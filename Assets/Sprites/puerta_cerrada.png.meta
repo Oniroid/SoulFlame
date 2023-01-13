@@ -1,0 +1,834 @@
+fileFormatVersion: 2
+guid: be8a2b12336c67b4ca20f8567d125f8b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3629434605932242638
+    second: puerta_cerrada_0
+  - first:
+      213: -3331657412014372298
+    second: puerta_cerrada_1
+  - first:
+      213: -4555069423328705283
+    second: puerta_cerrada_2
+  - first:
+      213: -5859299462050393883
+    second: puerta_cerrada_3
+  - first:
+      213: 878850453162984588
+    second: puerta_cerrada_4
+  - first:
+      213: -3954378257262121518
+    second: puerta_cerrada_5
+  - first:
+      213: 5429101831763377713
+    second: puerta_cerrada_6
+  - first:
+      213: 4815080312848960602
+    second: puerta_cerrada_7
+  - first:
+      213: 6121517075246867374
+    second: puerta_cerrada_8
+  - first:
+      213: 5497926547992759970
+    second: puerta_cerrada_9
+  - first:
+      213: -6345121995016026755
+    second: puerta_cerrada_10
+  - first:
+      213: -1581659258117647181
+    second: puerta_cerrada_11
+  - first:
+      213: 5294872191981915161
+    second: puerta_cerrada_12
+  - first:
+      213: -3844070102193863299
+    second: puerta_cerrada_13
+  - first:
+      213: -2948287740577745994
+    second: puerta_cerrada_14
+  - first:
+      213: -6911855748217439113
+    second: puerta_cerrada_15
+  - first:
+      213: -1077929860957205165
+    second: puerta_cerrada_16
+  - first:
+      213: 5775365045511517987
+    second: puerta_cerrada_17
+  - first:
+      213: -3678316175647365537
+    second: puerta_cerrada_18
+  - first:
+      213: -1549071287391396084
+    second: puerta_cerrada_19
+  - first:
+      213: 2980375971902068409
+    second: puerta_cerrada_20
+  - first:
+      213: 6999449590350954884
+    second: puerta_cerrada_21
+  - first:
+      213: 1814841751010198901
+    second: puerta_cerrada_22
+  - first:
+      213: -2023225207527130271
+    second: puerta_cerrada_23
+  - first:
+      213: 2317090534183633513
+    second: puerta_cerrada_24
+  - first:
+      213: -4904701766539829071
+    second: puerta_cerrada_25
+  - first:
+      213: -4260068981886485899
+    second: puerta_cerrada_26
+  - first:
+      213: 2350359704638397780
+    second: puerta_cerrada_27
+  - first:
+      213: -2457832805466865466
+    second: puerta_cerrada_28
+  - first:
+      213: 4116743311092698127
+    second: puerta_cerrada_29
+  - first:
+      213: -2898477530916344344
+    second: puerta_cerrada_30
+  - first:
+      213: -1012762432951330529
+    second: puerta_cerrada_31
+  - first:
+      213: -4913267154769778552
+    second: puerta_cerrada_32
+  - first:
+      213: 249333347314451601
+    second: puerta_cerrada_33
+  - first:
+      213: -8032410526991981266
+    second: puerta_cerrada_34
+  - first:
+      213: 4478855910846499131
+    second: puerta_cerrada_35
+  - first:
+      213: -5846682946421710873
+    second: puerta_cerrada_36
+  - first:
+      213: 8052483213115235372
+    second: puerta_cerrada_37
+  - first:
+      213: 5048743594257891545
+    second: puerta_cerrada_38
+  - first:
+      213: 8263942663964161368
+    second: puerta_cerrada_39
+  - first:
+      213: -7372832425912631427
+    second: puerta_cerrada_40
+  - first:
+      213: -4524711668560355534
+    second: puerta_cerrada_41
+  - first:
+      213: -8173412585242153404
+    second: puerta_cerrada_42
+  - first:
+      213: 6418246940893545651
+    second: puerta_cerrada_43
+  - first:
+      213: -8275071599137388448
+    second: puerta_cerrada_44
+  - first:
+      213: 8753483279410102166
+    second: puerta_cerrada_45
+  - first:
+      213: -7051464387004356961
+    second: puerta_cerrada_46
+  - first:
+      213: -6774340308777860899
+    second: puerta_cerrada_47
+  - first:
+      213: 1035288423769902401
+    second: puerta_cerrada_48
+  - first:
+      213: -5092717940842396129
+    second: puerta_cerrada_49
+  - first:
+      213: 1788151561610661512
+    second: puerta_cerrada_50
+  - first:
+      213: -7409657524469145911
+    second: puerta_cerrada_51
+  - first:
+      213: 5101690268663741587
+    second: puerta_cerrada_52
+  - first:
+      213: -5779395738750790472
+    second: puerta_cerrada_53
+  - first:
+      213: -8798691185935382137
+    second: puerta_cerrada_54
+  - first:
+      213: 7768314056292414333
+    second: puerta_cerrada_55
+  - first:
+      213: -8637492917523131844
+    second: puerta_cerrada_56
+  - first:
+      213: -8665550446967308886
+    second: puerta_cerrada_57
+  - first:
+      213: 3552717627043343835
+    second: puerta_cerrada_58
+  - first:
+      213: 357071406096509186
+    second: puerta_cerrada_59
+  - first:
+      213: -179710966026091729
+    second: puerta_cerrada_60
+  - first:
+      213: 6702767840710626380
+    second: puerta_cerrada_61
+  - first:
+      213: -510230904249956416
+    second: puerta_cerrada_62
+  - first:
+      213: 5352404836016124533
+    second: puerta_cerrada_63
+  - first:
+      213: -1429052174415856120
+    second: puerta_cerrada_64
+  - first:
+      213: 7930349199881793681
+    second: puerta_cerrada_65
+  - first:
+      213: -8621721974837130071
+    second: puerta_cerrada_66
+  - first:
+      213: -466993419750537316
+    second: puerta_cerrada_67
+  - first:
+      213: 1036834427584982055
+    second: puerta_cerrada_68
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 2
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: puerta_cerrada_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23916e99478a1adc0800000000000000
+      internalID: -3629434605932242638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63a06935c3393c1d0800000000000000
+      internalID: -3331657412014372298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df4cf374e7429c0c0800000000000000
+      internalID: -4555069423328705283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e059d3ee269faea0800000000000000
+      internalID: -5859299462050393883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c84887fa4dd423c00800000000000000
+      internalID: 878850453162984588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ddec5c1de93f19c0800000000000000
+      internalID: -3954378257262121518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13ebda3f95b085b40800000000000000
+      internalID: 5429101831763377713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5cc65c780a92d240800000000000000
+      internalID: 4815080312848960602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea3e394c85ff3f450800000000000000
+      internalID: 6121517075246867374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_9
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ae4c4ee01f8c4c40800000000000000
+      internalID: 5497926547992759970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_10
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d754d86d92991f7a0800000000000000
+      internalID: -6345121995016026755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_11
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b49034e841dc0ae0800000000000000
+      internalID: -1581659258117647181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_12
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91c0d26843a2b7940800000000000000
+      internalID: 5294872191981915161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_13
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d75090bdb9e17aac0800000000000000
+      internalID: -3844070102193863299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_14
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b3793fabe39517d0800000000000000
+      internalID: -2948287740577745994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_15
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77cf1cc41d72410a0800000000000000
+      internalID: -6911855748217439113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_16
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35d0cd8a08c6a01f0800000000000000
+      internalID: -1077929860957205165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_17
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 327fbe1e8e7362050800000000000000
+      internalID: 5775365045511517987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_18
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5627f24deef3fcc0800000000000000
+      internalID: -3678316175647365537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_19
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0f57471fd7908ae0800000000000000
+      internalID: -1549071287391396084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_20
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b6155ed72c6c5920800000000000000
+      internalID: 2980375971902068409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_21
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4814f18515a032160800000000000000
+      internalID: 6999449590350954884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: puerta_cerrada_22
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 575c28405fc9f2910800000000000000
+      internalID: 1814841751010198901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
