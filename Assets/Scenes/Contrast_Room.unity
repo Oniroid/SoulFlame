@@ -423,6 +423,7 @@ Transform:
   - {fileID: 1544300002}
   - {fileID: 1460549928}
   - {fileID: 2058620599}
+  - {fileID: 884531639}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2102,6 +2103,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807957971}
   m_CullTransparentMesh: 1
+--- !u!1 &884531638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 884531639}
+  - component: {fileID: 884531640}
+  m_Layer: 0
+  m_Name: GameFunctionsController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &884531639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884531638}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 297052510}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &884531640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884531638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a110ff6b4f40c5a4aa549bedf4a7b79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &897980511
 GameObject:
   m_ObjectHideFlags: 0
@@ -9844,7 +9888,7 @@ GameObject:
   - component: {fileID: 2058620599}
   - component: {fileID: 2058620598}
   m_Layer: 0
-  m_Name: GameController
+  m_Name: GameFlowController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9859,13 +9903,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2058620597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57b30b57ff0d56c47943ef180ef33037, type: 3}
+  m_Script: {fileID: 11500000, guid: 07a2d97525e41c341993ff513b555d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _gradient: {fileID: 450161446}
   _body: {fileID: 919132148268627763}
   _powerOn: {fileID: 897980511}
-  _powerOff: {fileID: 99593501}
   _mobileUI: {fileID: 1163897458}
   _cameraAnim: {fileID: 966236934}
   _titleAnim: {fileID: 807957973}
