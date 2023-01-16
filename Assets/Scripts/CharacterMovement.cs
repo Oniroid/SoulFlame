@@ -14,10 +14,11 @@ public class CharacterMovement : MonoBehaviour
     private bool _moving, _keeping, _movementDisabled, _usingMobile, _pressingButton;
     [SerializeField] private LayerMask _mask;
     SpriteRenderer _sr;
-    bool _dead;
+    private GameFunctionsController _gameFunctionsController;
 
     private void Start()
     {
+        _gameFunctionsController = FindObjectOfType<GameFunctionsController>();
         _sr = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         GameEvents.MobileMovement.AddListener(OnMobileInput);
@@ -25,13 +26,14 @@ public class CharacterMovement : MonoBehaviour
         GameEvents.OnRestart.AddListener(RestartButton);
     }
 
+    //CAMBIAR ESTO A UNA SOLA FUNCION
     public void DieElectrocuted()
     {
         if(_sr.color.a > 0.1f)
         {
-            if (!_dead)
+            if (!_gameFunctionsController.Dead)
             {
-                _dead = true;
+                _gameFunctionsController.Dead = true;
                 _animator.SetTrigger("DieElectrocuted");
                 StartCoroutine(CrDie());
             }
@@ -42,9 +44,9 @@ public class CharacterMovement : MonoBehaviour
     {
         if (_sr.color.a > 0.1f)
         {
-            if (!_dead)
+            if (!_gameFunctionsController.Dead)
             {
-                _dead = true;
+                _gameFunctionsController.Dead = true;
                 _animator.SetTrigger("DieArrowed");
                 StartCoroutine(CrDie());
             }
@@ -70,7 +72,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 _fadeOut.SetActive(true);
                 yield return new WaitForSeconds(1f);
-                FindObjectOfType<GameController>().NextLevel();
+                FindObjectOfType<GameFlowController>().NextLevelScene();
             }
         }
 
@@ -112,7 +114,7 @@ public class CharacterMovement : MonoBehaviour
 
     IEnumerator CrMoveChar(Direction dir)
     {
-        if (!_dead)
+        if (!_gameFunctionsController.Dead)
         {
             _moving = true;
             float dur = _moveDur;
@@ -278,9 +280,9 @@ public class CharacterMovement : MonoBehaviour
 
     public void RestartButton()
     {
-        if (!_dead)
+        if (!_gameFunctionsController.Dead)
         {
-            _dead = true;
+            _gameFunctionsController.Dead = true;
             FindObjectOfType<Restarter>().Restart();
         }
     }

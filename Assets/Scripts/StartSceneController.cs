@@ -24,7 +24,7 @@ public class StartSceneController : MonoBehaviour
                 _press.SetActive(false);
                 _fadeOut.SetActive(true);
                 yield return new WaitForSeconds(1f);
-                FindObjectOfType<GameController>().FirstLevel();
+                FindObjectOfType<GameFlowController>().FirstLevel();
             }
         }
     }

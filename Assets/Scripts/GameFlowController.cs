@@ -3,29 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour
+public class GameFlowController : MonoBehaviour    //Pensado para los cambios de escena y/o estéticos
 {
-    [SerializeField] private GameObject _gradient, _body, _powerOn, _powerOff, _mobileUI;
+    [SerializeField] private GameObject _gradient, _body, _powerOn, _mobileUI;
     [SerializeField] private Animator _cameraAnim, _titleAnim, _brightAnim;
     [SerializeField] private AudioSource _aSource;
-
-    private bool _canStart, _cheatActive, _canRestart;
-    private int _levelIndex;
-    // Start is called before the first frame update
+    private GameFunctionsController _gameFunctionsController;
     IEnumerator Start()
     {
+        _gameFunctionsController = FindObjectOfType<GameFunctionsController>();
         _gradient.SetActive(true);
         _body.SetActive(false);
         _powerOn.SetActive(false);
         yield return new WaitForSeconds(3);
-        _canStart = true;
+        _gameFunctionsController.CanStart = true;
     }
 
     private void Update()
     {
-        if (_canStart && Input.anyKeyDown)
+        if (_gameFunctionsController.CanStart && Input.anyKeyDown)
         {
-            _canStart = false;
+            _gameFunctionsController.CanStart = false;
             StartGame();
         }
     }
@@ -36,14 +34,14 @@ public class GameController : MonoBehaviour
         _titleAnim.SetTrigger("Start");
     }
 
-    public void Restart()
-    {
-        if (_canRestart)
-        {
-            _canRestart = false;
-            FindObjectOfType<Restarter>().Restart();
-        }
-    }
+    //public void Restart()
+    //{
+    //    if (_canRestart)
+    //    {
+    //        _canRestart = false;
+    //        FindObjectOfType<Restarter>().Restart();
+    //    }
+    //}
 
     public void StartGameCallBack()
     {
@@ -89,27 +87,9 @@ public class GameController : MonoBehaviour
         SceneManager.UnloadSceneAsync("Start");
         SceneManager.LoadScene("Level0", LoadSceneMode.Additive);
     }
-    public void NextLevel()
+    public void NextLevelScene()
     {
-        _levelIndex++;
-        if (_levelIndex == 3)
-        {
-            SceneManager.UnloadSceneAsync($"Level{_levelIndex-1}");
-            SceneManager.LoadScene("Contrast_Room");
-        }
-        else
-        {
-            SceneManager.UnloadSceneAsync($"Level{_levelIndex - 1}");
-            SceneManager.LoadScene($"Level{_levelIndex}", LoadSceneMode.Additive);
-        }
-    }
-
-    public void ActiveCheat()
-    {
-        _cheatActive = true;
-    }
-    public bool HasCheat()
-    {
-        return _cheatActive;
+        SceneManager.UnloadSceneAsync($"Level{_gameFunctionsController.LevelIndex-1}");
+        SceneManager.LoadScene($"Level{_gameFunctionsController.LevelIndex}", LoadSceneMode.Additive);
     }
 }

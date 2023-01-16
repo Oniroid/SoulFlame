@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameRenderCallback : MonoBehaviour
 {
-    [SerializeField] private GameController _gameController;
+    [SerializeField] private GameFlowController _gameController;
     public void CreditsCallback()
     {
         _gameController.FirstCallBack();

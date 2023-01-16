@@ -59,7 +59,7 @@ public class Level0Controller : MonoBehaviour
                 StopRestore();
                 if (_step >= 5)
                 {
-                    FindObjectOfType<GameController>().ActiveCheat();
+                    FindObjectOfType<GameFunctionsController>().CheatActive = true;
                     GameEvents.ThrowDialog.Invoke("Intro");
                     _cheated = true;
                 }

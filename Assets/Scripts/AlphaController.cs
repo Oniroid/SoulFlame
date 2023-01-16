@@ -6,10 +6,12 @@ public class AlphaController : MonoBehaviour
 {
     public static float _alpha;
     private bool _changingAlpha;
-    private GameController _gameController;
+    private GameFunctionsController _gameFunctionsController;
+    private GameFlowController _gameFlowController;
     private void Start()
     {
-        _gameController = FindObjectOfType<GameController>();
+        _gameFunctionsController = FindObjectOfType<GameFunctionsController>();
+        _gameFlowController = FindObjectOfType<GameFlowController>();
         _alpha = 100;
         GameEvents.OnAlpha.AddListener(OnAlpha);
         GameEvents.OnStopAlpha.AddListener(OnAlphaStop);
@@ -17,11 +19,11 @@ public class AlphaController : MonoBehaviour
 
     void Update()
     {
-        if(_gameController == null)
+        if(_gameFunctionsController == null)
         {
             return;
         }
-        if (!_gameController.HasCheat())
+        if (!_gameFunctionsController.CheatActive)
         {
             return;
         }
@@ -35,13 +37,13 @@ public class AlphaController : MonoBehaviour
         }
         if (!_changingAlpha)
         {
-            _gameController.StopBright();
+            _gameFlowController.StopBright();
         }
     }
 
     public void OnAlpha(bool up)
     {
-        if (!_gameController.HasCheat())
+        if (!_gameFunctionsController.CheatActive)
         {
             return;
         }
@@ -51,7 +53,7 @@ public class AlphaController : MonoBehaviour
             {
                 _changingAlpha = true;
                 _alpha += 25 * Time.deltaTime;
-                _gameController.OnBright(true);
+                _gameFlowController.OnBright(true);
             }
         }
         else
@@ -60,7 +62,7 @@ public class AlphaController : MonoBehaviour
             {
                 _changingAlpha = true;
                 _alpha -= 25 * Time.deltaTime;
-                _gameController.OnBright(false);
+                _gameFlowController.OnBright(false);
             }
         }
         _alpha = Mathf.Clamp(_alpha, 0, 100);

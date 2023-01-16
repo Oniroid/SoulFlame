@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraCallBack : MonoBehaviour
 {
-    [SerializeField] private GameController _gameController;
+    [SerializeField] private GameFlowController _gameController;
 
     public void OnCameraCallback()
     {
