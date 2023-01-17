@@ -7,14 +7,12 @@ public class AlphaReactive : MonoBehaviour
     SpriteRenderer _sr;
     [SerializeField] private int minAlpha=0;
     [SerializeField] private bool _inverse;
-    void Start()
-    {
-        
-        _sr = GetComponent<SpriteRenderer>();
 
+    void Start()
+    {    
+        _sr = GetComponent<SpriteRenderer>();
     }
 
-    
     void Update()
     {
         Color c = _sr.color;
@@ -22,22 +20,22 @@ public class AlphaReactive : MonoBehaviour
         {
             if (!_inverse)
             {
-                c.a = (AlphaController._alpha- minAlpha) / 100f;
+                c.a = (AlphaController.Alpha- minAlpha) / 100f;
             }
             else
             {
-                c.a = 1-((AlphaController._alpha - minAlpha) / 100f);
+                c.a = 1-((AlphaController.Alpha - minAlpha) / 100f);
             }
         }
         else
         {
             if (!_inverse)
             {
-                c.a = ((AlphaController._alpha- minAlpha)*(100/(100-minAlpha))) / 100f;
+                c.a = ((AlphaController.Alpha- minAlpha)*(100/(100-minAlpha))) / 100f;
             }
             else
             {
-                c.a = 1-(((AlphaController._alpha- minAlpha)*(100/(100-minAlpha))) / 100f);
+                c.a = 1-(((AlphaController.Alpha- minAlpha)*(100/(100-minAlpha))) / 100f);
             }
         }
         _sr.color = c;    

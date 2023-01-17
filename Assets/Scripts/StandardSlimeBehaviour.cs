@@ -21,7 +21,7 @@ public class StandardSlimeBehaviour : MonoBehaviour
     public void CheckMove()
     {
         if (_dead) return;
-        if (AlphaController._alpha < _minAlpha) return;
+        if (AlphaController.Alpha < _minAlpha) return;
         float horizontalDistance = transform.position.x - _player.transform.position.x;
         float verticalDistance = transform.position.y - _player.transform.position.y;
         
@@ -66,7 +66,7 @@ public class StandardSlimeBehaviour : MonoBehaviour
     }
     void Update()
     {
-        if (AlphaController._alpha < _minAlpha)
+        if (AlphaController.Alpha < _minAlpha)
         {
             if (_enabled)
             {

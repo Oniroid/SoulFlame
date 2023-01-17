@@ -9,7 +9,7 @@ public class MovableRock : MonoBehaviour
     {
         StartCoroutine(CrMove(direction));
 
-        if (AlphaController._alpha < 80)
+        if (AlphaController.Alpha < 80)
         {
         }
     }

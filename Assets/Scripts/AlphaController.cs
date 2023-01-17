@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class AlphaController : MonoBehaviour
 {
-    public static float _alpha;
+    public static float Alpha;
     private bool _changingAlpha;
     private GameFunctionsController _gameFunctionsController;
-    private GameFlowController _gameFlowController;
     private void Start()
     {
         _gameFunctionsController = FindObjectOfType<GameFunctionsController>();
-        _gameFlowController = FindObjectOfType<GameFlowController>();
-        _alpha = 100;
-        GameEvents.OnAlpha.AddListener(OnAlpha);
+        Alpha = 100;
+        GameEvents.OnAlphaInput.AddListener(OnAlpha);
         GameEvents.OnStopAlpha.AddListener(OnAlphaStop);
     }
 
@@ -37,7 +35,7 @@ public class AlphaController : MonoBehaviour
         }
         if (!_changingAlpha)
         {
-            _gameFlowController.StopBright();
+            GameEvents.OnStopAlpha.Invoke();
         }
     }
 
@@ -49,23 +47,23 @@ public class AlphaController : MonoBehaviour
         }
         if (up)
         {
-            if (_alpha < 100)
+            if (Alpha < 100)
             {
                 _changingAlpha = true;
-                _alpha += 25 * Time.deltaTime;
-                _gameFlowController.OnBright(true);
+                Alpha += 25 * Time.deltaTime;
+                GameEvents.OnAlphaChange.Invoke(true);
             }
         }
         else
         {
-            if (_alpha > 0)
+            if (Alpha > 0)
             {
                 _changingAlpha = true;
-                _alpha -= 25 * Time.deltaTime;
-                _gameFlowController.OnBright(false);
+                Alpha -= 25 * Time.deltaTime;
+                GameEvents.OnAlphaChange.Invoke(false);
             }
         }
-        _alpha = Mathf.Clamp(_alpha, 0, 100);
+        Alpha = Mathf.Clamp(Alpha, 0, 100);
     }
 
     public void OnAlphaStop()

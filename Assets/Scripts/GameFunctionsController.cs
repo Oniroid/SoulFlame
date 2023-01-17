@@ -1,11 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameFunctionsController : MonoBehaviour //Pensado para guardar elementos relacionados con la funcionalidad del juego
 {
     private int _levelIndex;
     private bool _canStart, _cheatActive, _dead;
+    public static GameFunctionsController GameFunctionsControllerInstance;
+
+    private void Awake()
+    {
+        if(GameFunctionsControllerInstance == null)
+        {
+            GameFunctionsControllerInstance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if(GameFunctionsControllerInstance != this)
+        {
+            Destroy(gameObject);
+        }
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName[0] == 'L')
+        {
+            _cheatActive = true;
+            _levelIndex = int.Parse(sceneName[sceneName.Length-1].ToString());
+        }
+    }
 
     public int LevelIndex
     {

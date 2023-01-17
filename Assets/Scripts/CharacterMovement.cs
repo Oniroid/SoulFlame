@@ -1,29 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private float _moveDur, _minMovement;
     [SerializeField] private AnimationCurve _easyInAnim, _keepAnim;
-    [SerializeField] private GameObject _fadeOut;
     private Animator _animator;
     public enum Direction {up, down, left, right};
     private Direction _targetDir, _lastDir;
     private float xAxis, yAxis;
-    private bool _moving, _keeping, _movementDisabled, _usingMobile, _pressingButton;
+    private bool _moving, _keeping, _movementDisabled, _usingMobile, _pressingButton, _restarting;
     [SerializeField] private LayerMask _mask;
     SpriteRenderer _sr;
     private GameFunctionsController _gameFunctionsController;
+    private GameFlowController _gameFlowController;
 
     private void Start()
     {
         _gameFunctionsController = FindObjectOfType<GameFunctionsController>();
+        _gameFlowController = FindObjectOfType<GameFlowController>();
         _sr = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
         GameEvents.MobileMovement.AddListener(OnMobileInput);
         GameEvents.OnStopMovement.AddListener(OnMobileStop);
-        GameEvents.OnRestart.AddListener(RestartButton);
+        GameEvents.OnRestart.AddListener(Restart);
     }
 
     //CAMBIAR ESTO A UNA SOLA FUNCION
@@ -55,7 +57,7 @@ public class CharacterMovement : MonoBehaviour
     IEnumerator CrDie()
     {
         yield return new WaitForSeconds(1.5f);
-        FindObjectOfType<Restarter>().Restart();
+        ReloadScene();
     }
     void Update()
     {
@@ -70,10 +72,23 @@ public class CharacterMovement : MonoBehaviour
             StartCoroutine(CrNext());
             IEnumerator CrNext()
             {
-                _fadeOut.SetActive(true);
+                GameEvents.ConsoleFadeOut.Invoke();
                 yield return new WaitForSeconds(1f);
-                FindObjectOfType<GameFlowController>().NextLevelScene();
+                _gameFunctionsController.LevelIndex++;
+                if (_gameFlowController != null)
+                {
+                    _gameFlowController.NextLevelScene();
+                }
+                else
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                }
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Restart();
         }
 
         if (_usingMobile)
@@ -109,6 +124,7 @@ public class CharacterMovement : MonoBehaviour
 
     void OnMobileStop()
     {
+        _usingMobile = false;
         _pressingButton = false;
     }
 
@@ -278,12 +294,35 @@ public class CharacterMovement : MonoBehaviour
         _animator.SetBool("Left", false);
     }
 
-    public void RestartButton()
+    public void Restart()
     {
         if (!_gameFunctionsController.Dead)
         {
+            ReloadScene();
+        }
+    }
+
+    public void ReloadScene()
+    {
+        if (!_restarting)
+        {
+            _restarting = true;
             _gameFunctionsController.Dead = true;
-            FindObjectOfType<Restarter>().Restart();
+            GameEvents.ConsoleFadeOut.Invoke();
+            StartCoroutine(CrRestart());
+            IEnumerator CrRestart()
+            {
+                yield return new WaitForSeconds(1.25f);
+                if (SceneManager.sceneCount > 1)
+                {
+                    SceneManager.LoadScene(gameObject.scene.name, LoadSceneMode.Additive);
+                    SceneManager.UnloadSceneAsync(gameObject.scene.name);
+                }
+                else
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                }
+            }
         }
     }
 }

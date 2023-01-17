@@ -15,7 +15,7 @@ public class ColliderReactive : MonoBehaviour
     
     void Update()
     {
-        if(AlphaController._alpha<_colliderThreshold)
+        if(AlphaController.Alpha<_colliderThreshold)
         {
             if (_disableCollider)
             {

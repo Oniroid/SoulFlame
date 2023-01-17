@@ -9,8 +9,25 @@ public class GameFlowController : MonoBehaviour    //Pensado para los cambios de
     [SerializeField] private Animator _cameraAnim, _titleAnim, _brightAnim;
     [SerializeField] private AudioSource _aSource;
     private GameFunctionsController _gameFunctionsController;
+    public static GameFlowController GameFlowControllerInstance;
+
+    private void Awake()
+    {
+        if (GameFlowControllerInstance == null)
+        {
+            GameFlowControllerInstance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (GameFlowControllerInstance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     IEnumerator Start()
     {
+        GameEvents.OnAlphaChange.AddListener(OnBright);
+        GameEvents.OnStopAlpha.AddListener(StopBright);
         _gameFunctionsController = FindObjectOfType<GameFunctionsController>();
         _gradient.SetActive(true);
         _body.SetActive(false);

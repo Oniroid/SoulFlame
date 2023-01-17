@@ -20,7 +20,7 @@ public class UIAlphaManager : MonoBehaviour
     {
         if (_pressed)
         {
-            GameEvents.OnAlpha.Invoke(_up);
+            GameEvents.OnAlphaInput.Invoke(_up);
         }
         else
         {
