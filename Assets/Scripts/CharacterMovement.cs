@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -10,13 +11,12 @@ public class CharacterMovement : MonoBehaviour
     private Animator _animator;
     public enum Direction {up, down, left, right};
     private Direction _targetDir, _lastDir;
-    private float xAxis, yAxis;
     private bool _moving, _keeping, _movementDisabled, _usingMobile, _pressingButton, _restarting;
     [SerializeField] private LayerMask _mask;
     SpriteRenderer _sr;
     private GameFunctionsController _gameFunctionsController;
     private GameFlowController _gameFlowController;
-
+    private Vector2 _inputMovement;
     private void Start()
     {
         _gameFunctionsController = FindObjectOfType<GameFunctionsController>();
@@ -28,10 +28,52 @@ public class CharacterMovement : MonoBehaviour
         GameEvents.OnRestart.AddListener(Restart);
     }
 
+    public void OnMovement(InputAction.CallbackContext value)
+    {
+        if (!_usingMobile)
+        {
+            _inputMovement = value.ReadValue<Vector2>();
+            if (Mathf.Abs(_inputMovement.magnitude) > _minMovement)
+            {
+                _keeping = true;
+                if (!_moving)
+                {
+                    CheckInputs();
+                }
+            }
+            else
+            {
+                _keeping = false;
+            }
+        }
+    }
+    public void OnContrast(InputAction.CallbackContext value)
+    {
+        Vector2 contrastInput = value.ReadValue<Vector2>();
+        if (Mathf.Abs(contrastInput.magnitude) > _minMovement)
+        {
+            if (contrastInput.y > 0)
+            {
+                GameEvents.OnAlphaInput.Invoke(true);
+            }
+            else
+            {
+                GameEvents.OnAlphaInput.Invoke(false);
+            }
+        }
+    }
+    public void OnRestart(InputAction.CallbackContext value)
+    {
+        if (value.started)
+        {
+            Restart();
+        }
+    }
+
     //CAMBIAR ESTO A UNA SOLA FUNCION
     public void DieElectrocuted()
     {
-        if(_sr.color.a > 0.1f)
+        if (_sr.color.a > 0.1f)
         {
             if (!_gameFunctionsController.Dead)
             {
@@ -39,7 +81,7 @@ public class CharacterMovement : MonoBehaviour
                 _animator.SetTrigger("DieElectrocuted");
                 StartCoroutine(CrDie());
             }
-        }      
+        }
         //this.enabled = false;
     }
     public void DieArrowed()
@@ -86,32 +128,12 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Restart();
-        }
-
         if (_usingMobile)
         {
             if (!_moving && _pressingButton)
             {
                 StartCoroutine(CrMoveChar(_targetDir));
             }
-            return;
-        }
-        xAxis = Input.GetAxis("Horizontal");
-        yAxis = Input.GetAxis("Vertical");
-        if (Mathf.Abs(xAxis) > _minMovement || Mathf.Abs(yAxis) > _minMovement)
-        {
-            _keeping = true;
-            if (!_moving)
-            {
-                CheckInputs();
-            }
-        }
-        else
-        {
-            _keeping = false;
         }
     }
 
@@ -259,24 +281,24 @@ public class CharacterMovement : MonoBehaviour
 
     void CheckInputs()
     {
-        if(xAxis!= 0)
+        if(_inputMovement.x != 0)
         {
-            if (xAxis > _minMovement)
+            if (_inputMovement.x > _minMovement)
             {
                 _targetDir = Direction.right;
             }
-            if (xAxis < -_minMovement)
+            if (_inputMovement.x < -_minMovement)
             {
                 _targetDir = Direction.left;
             }
         }
-        else if (yAxis != 0)
+        else if (_inputMovement.y != 0)
         {
-            if (yAxis > _minMovement)
+            if (_inputMovement.y > _minMovement)
             {
                 _targetDir = Direction.up;
             }
-            if (yAxis < -_minMovement)
+            if (_inputMovement.y < -_minMovement)
             {
                 _targetDir = Direction.down;
             }

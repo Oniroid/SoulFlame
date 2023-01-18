@@ -25,14 +25,6 @@ public class AlphaController : MonoBehaviour
         {
             return;
         }
-        if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.KeypadMinus)))
-        {
-            OnAlpha(false);
-        }
-        else if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.KeypadPlus)))
-        {
-            OnAlpha(true);
-        }
         if (!_changingAlpha)
         {
             GameEvents.OnStopAlpha.Invoke();
