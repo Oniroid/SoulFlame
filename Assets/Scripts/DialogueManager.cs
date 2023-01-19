@@ -22,7 +22,7 @@ public class DialogueManager : MonoBehaviour
         GameEvents.OnStopMovement.AddListener(StopButton);
     }
 
-    public void AnyButton(CharacterMovement.Direction dir)
+    public void AnyButton(GameFunctionsController.Direction dir)
     {
         _clickingButton = true;
     }

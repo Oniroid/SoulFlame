@@ -5,26 +5,26 @@ using UnityEngine;
 public class UIMobileMovementManager : MonoBehaviour
 {
     private bool _pressing;
-    CharacterMovement.Direction _currentDirection;
+    GameFunctionsController.Direction _currentDirection;
     public void MoveUp()
     {
         _pressing = true;
-        _currentDirection = CharacterMovement.Direction.up;
+        _currentDirection = GameFunctionsController.Direction.Up;
     }
     public void MoveDown()
     {
         _pressing = true;
-        _currentDirection = CharacterMovement.Direction.down;
+        _currentDirection = GameFunctionsController.Direction.Down;
     }
     public void MoveLeft()
     {
         _pressing = true;
-        _currentDirection = CharacterMovement.Direction.left;
+        _currentDirection = GameFunctionsController.Direction.Left;
     }
     public void MoveRight()
     {
         _pressing = true;
-        _currentDirection = CharacterMovement.Direction.right;
+        _currentDirection = GameFunctionsController.Direction.Right;
     }
 
     public void OnButtonExit()

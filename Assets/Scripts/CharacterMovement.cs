@@ -9,8 +9,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float _moveDur, _minMovement;
     [SerializeField] private AnimationCurve _easyInAnim, _keepAnim;
     private Animator _animator;
-    public enum Direction {up, down, left, right};
-    private Direction _targetDir, _lastDir;
+    public enum DieType {Arrow, Ray};
+    private GameFunctionsController.Direction _targetDir, _lastDir;
     private bool _moving, _keeping, _movementDisabled, _pressingButton, _restarting;
     [SerializeField] private LayerMask _mask;
     SpriteRenderer _sr;
@@ -83,7 +83,7 @@ public class CharacterMovement : MonoBehaviour
         }
         //this.enabled = false;
     }
-    public void DieArrowed()
+    public void Die()
     {
         if (_sr.color.a > 0.1f)
         {
@@ -136,7 +136,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    void OnMobileInput(Direction targetDirection)
+    void OnMobileInput(GameFunctionsController.Direction targetDirection)
     {
         _targetDir = targetDirection;
         _pressingButton = true;
@@ -147,7 +147,7 @@ public class CharacterMovement : MonoBehaviour
         _pressingButton = false;
     }
 
-    IEnumerator CrMoveChar(Direction dir)
+    IEnumerator CrMoveChar(GameFunctionsController.Direction dir)
     {
         if (!_gameFunctionsController.Dead)
         {
@@ -166,8 +166,7 @@ public class CharacterMovement : MonoBehaviour
             }
             switch (dir)
             {
-                case Direction.up:
-
+                case GameFunctionsController.Direction.Up:
                     RaycastHit2D hit = Physics2D.Linecast(transform.position, transform.position + Vector3.up * 0.8f, _mask);
                     if (!hit)
                     {
@@ -183,7 +182,7 @@ public class CharacterMovement : MonoBehaviour
 
                     _animator.SetBool("Up", true);
                     break;
-                case Direction.down:
+                case GameFunctionsController.Direction.Down:
 
                     hit = Physics2D.Linecast(transform.position, transform.position + Vector3.down * 0.8f, _mask);
                     if (!hit)
@@ -199,7 +198,7 @@ public class CharacterMovement : MonoBehaviour
                     }
                     _animator.SetBool("Down", true);
                     break;
-                case Direction.left:
+                case GameFunctionsController.Direction.Left:
                     hit = Physics2D.Linecast(transform.position, transform.position + Vector3.left * 0.8f, _mask);
                     if (!hit)
                     {
@@ -214,7 +213,7 @@ public class CharacterMovement : MonoBehaviour
                     }
                     _animator.SetBool("Left", true);
                     break;
-                case Direction.right:
+                case GameFunctionsController.Direction.Right:
                     hit = Physics2D.Linecast(transform.position, transform.position + Vector3.right * 0.8f, _mask);
                     if (!hit)
                     {
@@ -260,16 +259,16 @@ public class CharacterMovement : MonoBehaviour
         float targetBlend = 0;
         switch (_lastDir)
         {
-            case Direction.up:
+            case GameFunctionsController.Direction.Up:
                 targetBlend = 0;
                 break;
-            case Direction.down:
+            case GameFunctionsController.Direction.Down:
                 targetBlend = 0.33f;
                 break;
-            case Direction.left:
+            case GameFunctionsController.Direction.Left:
                 targetBlend = 0.66f;
                 break;
-            case Direction.right:
+            case GameFunctionsController.Direction.Right:
                 targetBlend = 1;
                 break;
         }
@@ -282,22 +281,22 @@ public class CharacterMovement : MonoBehaviour
         {
             if (_inputMovement.x > _minMovement)
             {
-                _targetDir = Direction.right;
+                _targetDir = GameFunctionsController.Direction.Right;
             }
             if (_inputMovement.x < -_minMovement)
             {
-                _targetDir = Direction.left;
+                _targetDir = GameFunctionsController.Direction.Left;
             }
         }
         else if (_inputMovement.y != 0)
         {
             if (_inputMovement.y > _minMovement)
             {
-                _targetDir = Direction.up;
+                _targetDir = GameFunctionsController.Direction.Up;
             }
             if (_inputMovement.y < -_minMovement)
             {
-                _targetDir = Direction.down;
+                _targetDir = GameFunctionsController.Direction.Down;
             }
         }
         if (!_moving)

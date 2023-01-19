@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Shooter : MonoBehaviour
 {
+    [SerializeField] private GameFunctionsController.Direction targetDirection;
     [SerializeField] private LayerMask _mask;
     [SerializeField] private GameObject _arrow;
-    [SerializeField] private bool _vertical;
+    private Vector3 _direction;
     float _shootCd;
     void Start()
     {
@@ -20,44 +21,46 @@ public class Shooter : MonoBehaviour
         {
             _shootCd -= Time.deltaTime;
         }
-        RaycastHit2D hit = Physics2D.Linecast(transform.position, transform.position + transform.right * 20, _mask);
-        if (_vertical)
+        RaycastHit2D hit;
+
+        switch (targetDirection)
         {
-            hit = Physics2D.Linecast(transform.position, transform.position + Vector3.down * 20, _mask);
+            case GameFunctionsController.Direction.Up:
+                _direction = Vector2.up;
+                break;
+            case GameFunctionsController.Direction.Down:
+                _direction = Vector2.down;
+                break;
+            case GameFunctionsController.Direction.Left:
+                _direction = Vector2.left;
+                break;
+            case GameFunctionsController.Direction.Right:
+                _direction = Vector2.right;
+                break;
         }
+        hit = Physics2D.Linecast(transform.position, transform.position + _direction * 20, _mask);
+
         if (hit)
         {
-            
             if (_shootCd <= 0)
-            {
-                
+            {        
                 GameObject g = Instantiate(_arrow, transform.position, Quaternion.identity);
-                if (g.GetComponent<HorizontalArrow>() != null)
+                g.GetComponent<Arrow>().Init(targetDirection, hit.transform.position);
+                if (hit.collider.GetComponent<CharacterMovement>() != null)
                 {
-                    g.GetComponent<HorizontalArrow>()._target = hit.transform.position;
+                    hit.collider.GetComponent<CharacterMovement>().Die();
                 }
-                else
-                {
-                    g.GetComponent<VerticalArrow>()._target = hit.transform.position;
-
-                }
-                if (hit.collider.gameObject.GetComponent<CharacterMovement>() != null)
-                {
-                    CharacterMovement charac = FindObjectOfType<CharacterMovement>();
-                    charac.DieArrowed();
-                    //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                }
-                if (hit.collider.gameObject.GetComponent<StandardSlimeBehaviour>()!=null)
-                {
-                    if (_vertical)
-                    {
-                        Destroy(hit.collider.gameObject);
-                    }
-                    else
-                    {
-                        hit.collider.gameObject.GetComponent<StandardSlimeBehaviour>().Die();
-                    }
-                }
+                //if (hit.collider.gameObject.GetComponent<StandardSlimeBehaviour>()!=null)
+                //{
+                //    if (_vertical)
+                //    {
+                //        Destroy(hit.collider.gameObject);
+                //    }
+                //    else
+                //    {
+                //        hit.collider.gameObject.GetComponent<StandardSlimeBehaviour>().Die();
+                //    }
+                //}
                 _shootCd = 2f;
             }
         }

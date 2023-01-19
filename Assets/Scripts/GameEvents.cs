@@ -19,5 +19,5 @@ public static class GameEvents
     public class DialogEvent : UnityEvent<string> { };
     public class BoolEvent : UnityEvent<bool> { };
     public class AudioEvent : UnityEvent<SFXManager.ClipName> { };
-    public class MovementEvent : UnityEvent<CharacterMovement.Direction> { };
+    public class MovementEvent : UnityEvent<GameFunctionsController.Direction> { };
 }

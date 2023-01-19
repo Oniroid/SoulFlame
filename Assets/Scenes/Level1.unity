@@ -4017,11 +4017,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d806d126d41814083b39c60d3530e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetDirection: 1
   _mask:
     serializedVersion: 2
     m_Bits: 200
-  _arrow: {fileID: 4538256223629182885, guid: e5447152bf1ccfb469cc19b8ed8d7f7c, type: 3}
-  _vertical: 1
+  _arrow: {fileID: 8401837569788900397, guid: 0437c27ad6b41fe49a278b2800ba0984, type: 3}
 --- !u!1 &424778596
 GameObject:
   m_ObjectHideFlags: 0
@@ -11893,11 +11893,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d806d126d41814083b39c60d3530e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetDirection: 3
   _mask:
     serializedVersion: 2
     m_Bits: 200
   _arrow: {fileID: 8401837569788900397, guid: 0437c27ad6b41fe49a278b2800ba0984, type: 3}
-  _vertical: 0
 --- !u!61 &1250699222
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20307,11 +20307,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5d806d126d41814083b39c60d3530e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetDirection: 3
   _mask:
     serializedVersion: 2
     m_Bits: 200
   _arrow: {fileID: 8401837569788900397, guid: 0437c27ad6b41fe49a278b2800ba0984, type: 3}
-  _vertical: 0
 --- !u!61 &2037120593
 BoxCollider2D:
   m_ObjectHideFlags: 0

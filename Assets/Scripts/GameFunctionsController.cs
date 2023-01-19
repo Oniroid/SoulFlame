@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameFunctionsController : MonoBehaviour //Pensado para guardar elementos relacionados con la funcionalidad del juego
 {
+    public enum Direction { Up, Down, Left, Right };
     private int _levelIndex;
     private bool _canStart, _cheatActive, _dead, _usingMobile;
     public static GameFunctionsController GameFunctionsControllerInstance;
