@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class StartSceneController : MonoBehaviour
 {
@@ -13,9 +14,9 @@ public class StartSceneController : MonoBehaviour
         _canLoad = true;
     }
 
-    void Update()
+    public void OnAnyKey(InputAction.CallbackContext value)
     {
-        if (Input.anyKeyDown && _canLoad)
+        if (_canLoad)
         {
             StartCoroutine(CrLoadLevel());
             IEnumerator CrLoadLevel()

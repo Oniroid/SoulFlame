@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameFlowController : MonoBehaviour    //Pensado para los cambios de escena y/o estéticos
@@ -36,11 +37,12 @@ public class GameFlowController : MonoBehaviour    //Pensado para los cambios de
         _gameFunctionsController.CanStart = true;
     }
 
-    private void Update()
+    public void OnAnyKey(InputAction.CallbackContext value)
     {
-        if (_gameFunctionsController.CanStart && Input.anyKeyDown)
+        if (_gameFunctionsController.CanStart)
         {
             _gameFunctionsController.CanStart = false;
+            GameObject.Find("3DInput").SetActive(false);
             StartGame();
         }
     }
@@ -50,15 +52,6 @@ public class GameFlowController : MonoBehaviour    //Pensado para los cambios de
         _cameraAnim.SetTrigger("Start");
         _titleAnim.SetTrigger("Start");
     }
-
-    //public void Restart()
-    //{
-    //    if (_canRestart)
-    //    {
-    //        _canRestart = false;
-    //        FindObjectOfType<Restarter>().Restart();
-    //    }
-    //}
 
     public void StartGameCallBack()
     {

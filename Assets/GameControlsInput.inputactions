@@ -15,9 +15,9 @@
                 },
                 {
                     "name": "Contrast",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "8cb438d7-9fdb-48ab-a036-64b62380f879",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -152,7 +152,7 @@
                 {
                     "name": "Arrows",
                     "id": "71b21643-f0a8-4394-9d1c-bd3c5ad9f92a",
-                    "path": "2DVector",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -161,9 +161,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
+                    "name": "Negative",
                     "id": "ce21490f-2b18-4fc4-b1e5-deb6659cbbfd",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -172,9 +172,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
-                    "id": "4797d855-002f-4ef5-8f4e-54ee573d73d0",
-                    "path": "<Keyboard>/downArrow",
+                    "name": "Positive",
+                    "id": "25bc3db7-a00d-4d06-ba82-902b81ba9aa9",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

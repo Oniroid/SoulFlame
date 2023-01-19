@@ -5,7 +5,7 @@ using UnityEngine;
 public class AlphaController : MonoBehaviour
 {
     public static float Alpha;
-    private bool _changingAlpha;
+    private bool _changingAlpha, _up;
     private GameFunctionsController _gameFunctionsController;
     private void Start()
     {
@@ -21,14 +21,28 @@ public class AlphaController : MonoBehaviour
         {
             return;
         }
-        if (!_gameFunctionsController.CheatActive)
+        if (!_gameFunctionsController.CheatActive || !_changingAlpha)
         {
             return;
         }
-        if (!_changingAlpha)
+        float targetAlpha = Alpha;
+        if (_up)
         {
-            GameEvents.OnStopAlpha.Invoke();
+            if (targetAlpha < 100)
+            {
+                targetAlpha += 25 * Time.deltaTime;
+                GameEvents.OnAlphaChange.Invoke(true);
+            }
         }
+        else
+        {
+            if (targetAlpha > 0)
+            {
+                targetAlpha -= 25 * Time.deltaTime;
+                GameEvents.OnAlphaChange.Invoke(false);
+            }
+        }
+        Alpha = Mathf.Clamp(targetAlpha, 0, 100);
     }
 
     public void OnAlpha(bool up)
@@ -37,25 +51,8 @@ public class AlphaController : MonoBehaviour
         {
             return;
         }
-        if (up)
-        {
-            if (Alpha < 100)
-            {
-                _changingAlpha = true;
-                Alpha += 25 * Time.deltaTime;
-                GameEvents.OnAlphaChange.Invoke(true);
-            }
-        }
-        else
-        {
-            if (Alpha > 0)
-            {
-                _changingAlpha = true;
-                Alpha -= 25 * Time.deltaTime;
-                GameEvents.OnAlphaChange.Invoke(false);
-            }
-        }
-        Alpha = Mathf.Clamp(Alpha, 0, 100);
+        _changingAlpha = true;
+        _up = up;
     }
 
     public void OnAlphaStop()

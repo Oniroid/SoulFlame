@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Level0Controller : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class Level0Controller : MonoBehaviour
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) || _up)
+        if (Keyboard.current.upArrowKey.wasPressedThisFrame || _up)
         {
             _up = false;
             _down = false;
@@ -49,7 +50,7 @@ public class Level0Controller : MonoBehaviour
                 StopRestore();
             }
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow) || _down)
+        if (Keyboard.current.downArrowKey.wasPressedThisFrame || _down)
         {
             _up = false;
             _down = false;

@@ -220,8 +220,8 @@ RectTransform:
   - {fileID: 1369673988}
   - {fileID: 366334643}
   - {fileID: 1639742775}
-  m_Father: {fileID: 494510518}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -351,7 +351,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 609403124}
-  - {fileID: 88651042}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -365,6 +364,7 @@ GameObject:
   m_Component:
   - component: {fileID: 551673188}
   - component: {fileID: 551673189}
+  - component: {fileID: 551673190}
   m_Layer: 0
   m_Name: StartController
   m_TagString: Untagged
@@ -400,6 +400,96 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeOut: {fileID: 1639742774}
   _press: {fileID: 653711418}
+--- !u!114 &551673190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551673187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: adea7cd6e0c25f341ad42052ea2f0935, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e6a2be36-dd21-4bd5-b946-5475af7d6abc
+    m_ActionName: Game/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8cb438d7-9fdb-48ab-a036-64b62380f879
+    m_ActionName: Game/Contrast[/Keyboard/downArrow,/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e6e43c85-5bbd-48e0-a251-482091c78b1e
+    m_ActionName: Game/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8c580f8f-44b1-460c-bb84-414d7bea75ff
+    m_ActionName: Game/Restart[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a753528e-5df1-4c82-9131-d877bab877eb
+    m_ActionName: Menu/UP[/Keyboard/upArrow,/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e61d5b80-1005-4272-8798-1a0a82da5419
+    m_ActionName: Menu/DOWN[/Keyboard/downArrow,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 29f97fcd-627a-4a28-87bb-40bac5a4cf05
+    m_ActionName: Menu/LEFT[/Keyboard/leftArrow,/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cbc76787-129f-4308-bfd6-a5d7f9504c91
+    m_ActionName: Menu/RIGHT[/Keyboard/rightArrow,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1219c691-bb32-4fe0-a04a-b1a261406f1e
+    m_ActionName: Menu/SELECT[/Keyboard/space,/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 29941e8c-51c8-4b06-a5af-d1cc37bd91f0
+    m_ActionName: Menu/BACK[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 551673189}
+        m_TargetAssemblyTypeName: StartSceneController, Assembly-CSharp
+        m_MethodName: OnAnyKey
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: cbfa393a-7f64-4fb9-a2b8-e3f21de9e5d2
+    m_ActionName: Menu/ANY[/Keyboard/anyKey]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 10f2e8ff-ee8f-47bc-914b-224bbdca409d
+    m_ActionName: Menu/StickSelection
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 6e6bfbe6-95d4-4f9b-8f1e-ded89097bc32
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &609403121
 GameObject:
   m_ObjectHideFlags: 0

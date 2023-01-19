@@ -47,14 +47,14 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || _clickingButton)
+        if (_clickingButton)
         {
             if (_canNext)
             {
                 WriteSentence();
             }
         }
-        if (Input.GetKey(KeyCode.Space) || _clickingButton)
+        if (_clickingButton)
         {
             _currentWriteTime = _writeCharTime / 3f;
         }

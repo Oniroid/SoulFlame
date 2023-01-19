@@ -11,7 +11,7 @@ public class CharacterMovement : MonoBehaviour
     private Animator _animator;
     public enum Direction {up, down, left, right};
     private Direction _targetDir, _lastDir;
-    private bool _moving, _keeping, _movementDisabled, _usingMobile, _pressingButton, _restarting;
+    private bool _moving, _keeping, _movementDisabled, _pressingButton, _restarting;
     [SerializeField] private LayerMask _mask;
     SpriteRenderer _sr;
     private GameFunctionsController _gameFunctionsController;
@@ -30,36 +30,35 @@ public class CharacterMovement : MonoBehaviour
 
     public void OnMovement(InputAction.CallbackContext value)
     {
-        if (!_usingMobile)
+        _inputMovement = value.ReadValue<Vector2>();
+        if (Mathf.Abs(_inputMovement.magnitude) > _minMovement)
         {
-            _inputMovement = value.ReadValue<Vector2>();
-            if (Mathf.Abs(_inputMovement.magnitude) > _minMovement)
+            _keeping = true;
+            if (!_moving)
             {
-                _keeping = true;
-                if (!_moving)
-                {
-                    CheckInputs();
-                }
+                CheckInputs();
             }
-            else
-            {
-                _keeping = false;
-            }
+        }
+        else
+        {
+            _keeping = false;
         }
     }
     public void OnContrast(InputAction.CallbackContext value)
     {
-        Vector2 contrastInput = value.ReadValue<Vector2>();
-        if (Mathf.Abs(contrastInput.magnitude) > _minMovement)
+        if (value.canceled)
         {
-            if (contrastInput.y > 0)
-            {
-                GameEvents.OnAlphaInput.Invoke(true);
-            }
-            else
-            {
-                GameEvents.OnAlphaInput.Invoke(false);
-            }
+            GameEvents.OnStopAlpha.Invoke();
+            return;
+        }
+        float contrastInput = value.ReadValue<float>();
+        if (contrastInput > 0)
+        {
+            GameEvents.OnAlphaInput.Invoke(true);
+        }
+        else
+        {
+            GameEvents.OnAlphaInput.Invoke(false);
         }
     }
     public void OnRestart(InputAction.CallbackContext value)
@@ -128,7 +127,7 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
-        if (_usingMobile)
+        if (_gameFunctionsController.UsingMobile)
         {
             if (!_moving && _pressingButton)
             {
@@ -140,13 +139,11 @@ public class CharacterMovement : MonoBehaviour
     void OnMobileInput(Direction targetDirection)
     {
         _targetDir = targetDirection;
-        _usingMobile = true;
         _pressingButton = true;
     }
 
     void OnMobileStop()
     {
-        _usingMobile = false;
         _pressingButton = false;
     }
 
@@ -242,7 +239,7 @@ public class CharacterMovement : MonoBehaviour
             transform.position = targetPos;
             if (_keeping || _pressingButton)
             {
-                if (!_usingMobile)
+                if (!_gameFunctionsController.UsingMobile)
                 {
                     CheckInputs();
                 }

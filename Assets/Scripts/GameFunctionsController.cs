@@ -6,11 +6,15 @@ using UnityEngine.SceneManagement;
 public class GameFunctionsController : MonoBehaviour //Pensado para guardar elementos relacionados con la funcionalidad del juego
 {
     private int _levelIndex;
-    private bool _canStart, _cheatActive, _dead;
+    private bool _canStart, _cheatActive, _dead, _usingMobile;
     public static GameFunctionsController GameFunctionsControllerInstance;
 
     private void Awake()
     {
+        if(Application.platform == RuntimePlatform.Android)
+        {
+            _usingMobile = true;
+        }
         if(GameFunctionsControllerInstance == null)
         {
             GameFunctionsControllerInstance = this;
@@ -47,5 +51,9 @@ public class GameFunctionsController : MonoBehaviour //Pensado para guardar elem
     {
         get { return _dead; }
         set { _dead = value; }
+    }
+    public bool UsingMobile
+    {
+        get { return _usingMobile; }
     }
 }
