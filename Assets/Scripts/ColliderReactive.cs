@@ -11,8 +11,6 @@ public class ColliderReactive : MonoBehaviour
     {
         _collider = GetComponent<Collider2D>();
     }
-
-    
     void Update()
     {
         if(AlphaController.Alpha<_colliderThreshold)

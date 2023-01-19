@@ -5,10 +5,6 @@ using UnityEngine;
 public class HorizontalArrow : MonoBehaviour
 {
     public Vector2 _target;
-    void Start()
-    {
-        
-    }
 
     void Update()
     {
@@ -16,7 +12,6 @@ public class HorizontalArrow : MonoBehaviour
         if (transform.position.x > _target.x)
         {
             Destroy(gameObject);
-
         }
     }
 }

@@ -70,7 +70,6 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(CrWaitForWrite());
         IEnumerator CrWaitForWrite()
         {
-            yield return new WaitForSeconds(0.5f);
             _canNext = false;
             _continueButton.SetActive(false);
             _contentTx.text = "";
@@ -98,7 +97,6 @@ public class DialogueManager : MonoBehaviour
                 _currentSentenceIndex = 0;
             }
         }
-
     }
 
     IEnumerator CrWriteText(string targetContent)

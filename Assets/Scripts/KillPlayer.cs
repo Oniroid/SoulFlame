@@ -10,7 +10,6 @@ public class KillPlayer : MonoBehaviour
         _c = FindObjectOfType<CharacterMovement>();
     }
 
-    
     void Update()
     {
         if(Vector3.Distance(_c.transform.position, transform.position) < 0.75f)

@@ -16,22 +16,9 @@ public class TileBehaviour: MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = _levelGenerator.GetSprite(value);
         }
     }
-    SpriteRenderer _sprite;
 
     private void Awake()
     {
         _levelGenerator = FindObjectOfType<LevelGenerator>();
-    }
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-    }
-
-    private void OnMouseDown()
-    {
-
     }
 }

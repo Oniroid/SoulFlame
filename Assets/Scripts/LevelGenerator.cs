@@ -27,9 +27,4 @@ public class LevelGenerator : MonoBehaviour
             }
         }
     }
-
-    void Update()
-    {
-        
-    }
 }

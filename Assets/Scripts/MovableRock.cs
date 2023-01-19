@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MovableRock : MonoBehaviour
 {
-
     public void Move(Vector3 direction)
     {
         StartCoroutine(CrMove(direction));
@@ -24,10 +23,5 @@ public class MovableRock : MonoBehaviour
             yield return null;
         }
         transform.position = endPosition;
-    }
-
-    private void Update()
-    {
-
     }
 }

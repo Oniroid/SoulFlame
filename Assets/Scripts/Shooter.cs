@@ -25,9 +25,6 @@ public class Shooter : MonoBehaviour
         {
             hit = Physics2D.Linecast(transform.position, transform.position + Vector3.down * 20, _mask);
         }
-        
-
-        
         if (hit)
         {
             

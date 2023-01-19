@@ -21,7 +21,6 @@ public class TileBehaviourEditor : MonoBehaviour
     void Awake()
     {
         _mapFiller = FindObjectOfType<MapFiller>();
-
     }
 
     void Update()

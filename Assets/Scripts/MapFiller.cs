@@ -22,7 +22,6 @@ public class MapFiller : MonoBehaviour
     }
     void Start()
     {
-
         string jsonLevel = System.IO.File.ReadAllText(Application.dataPath + "/"+ _levelName+".json");
         Level l = JsonUtility.FromJson<Level>(jsonLevel);
 
@@ -70,13 +69,13 @@ public class MapFiller : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            SaveLevel();
-        };
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.S))
+    //    {
+    //        SaveLevel();
+    //    }
+    //}
 }
 
 

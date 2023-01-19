@@ -7,10 +7,6 @@ public class Flash : MonoBehaviour
     [SerializeField] private List<SpriteRenderer> _sprites;
     [SerializeField] private AnimationCurve _curve;
     [SerializeField] private GameObject _statue;
-    void Start()
-    {
-        
-    }
     public void ReFlash()
     {
         StartCoroutine(CrFlash());
@@ -36,14 +32,5 @@ public class Flash : MonoBehaviour
             _statue.GetComponent<Statue>().Flashazo();
         }
 
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ReFlash();
-
-        }
     }
 }

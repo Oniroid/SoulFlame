@@ -9,11 +9,6 @@ public class StatueHolder : MonoBehaviour
     [SerializeField] private GameObject _closedDoors;
     [SerializeField] private GameObject _openDoors;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         if(Vector3.Distance(_statue.transform.position, transform.position) < 0.3f)
