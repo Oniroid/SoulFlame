@@ -39,18 +39,18 @@ public class GameFlowController : MonoBehaviour    //Pensado para los cambios de
 
     public void OnAnyKey(InputAction.CallbackContext value)
     {
-        if (_gameFunctionsController.CanStart)
-        {
-            _gameFunctionsController.CanStart = false;
-            GameObject.Find("3DInput").SetActive(false);
-            StartGame();
-        }
+        StartGame();
     }
 
     public void StartGame()
     {
-        _cameraAnim.SetTrigger("Start");
-        _titleAnim.SetTrigger("Start");
+        if (_gameFunctionsController.CanStart)
+        {
+            _gameFunctionsController.CanStart = false;
+            GameObject.Find("3DInput").SetActive(false);
+            _cameraAnim.SetTrigger("Start");
+            _titleAnim.SetTrigger("Start");
+        }
     }
 
     public void StartGameCallBack()

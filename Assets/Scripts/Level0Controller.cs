@@ -8,26 +8,38 @@ public class Level0Controller : MonoBehaviour
     private int _step;
     private bool _cheated, _up, _down;
     private Coroutine _crRestore;
+    private GameFunctionsController.Direction _lastDirection;
     [SerializeField] private CharacterMovement _characterMovement;
     IEnumerator Start()
     {
-        GameEvents.OnPressUp.AddListener(Up);
-        GameEvents.OnPressDown.AddListener(Down);
+        GameEvents.MobileMovement.AddListener(Up);
+        GameEvents.OnStopMovement.AddListener(OnStopMovement);
         yield return null;
     }
 
-    public void Up()
+    public void Up(GameFunctionsController.Direction targetDirection)
     {
-        _up = true;
-        _down = false;
-
+        _lastDirection = targetDirection;
     }
-    public void Down()
+
+    public void OnStopMovement()
     {
-        _up = false;
-        _down = true;
-
+        if(_lastDirection != GameFunctionsController.Direction.Up && _lastDirection != GameFunctionsController.Direction.Down)
+        {
+            _step = 0;
+        }
+        if (_lastDirection == GameFunctionsController.Direction.Up)
+        {
+            _up = true;
+            _down = false;
+        }
+        if (_lastDirection == GameFunctionsController.Direction.Down)
+        {
+            _up = false;
+            _down = true;
+        }
     }
+
     void Update()
     {
         if (_cheated)
@@ -37,8 +49,7 @@ public class Level0Controller : MonoBehaviour
         if (Keyboard.current.upArrowKey.wasPressedThisFrame || _up)
         {
             _up = false;
-            _down = false;
-            if (_step ==0 || _step == 1 || _step == 4)
+            if (_step == 0 || _step == 1 || _step == 4)
             {
                 _step++;
                 StopRestore();
@@ -52,7 +63,6 @@ public class Level0Controller : MonoBehaviour
         }
         if (Keyboard.current.downArrowKey.wasPressedThisFrame || _down)
         {
-            _up = false;
             _down = false;
             if (_step == 2 || _step == 3 || _step == 5)
             {

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameFunctionsController : MonoBehaviour //Pensado para guardar elementos relacionados con la funcionalidad del juego
 {
+    public bool mobileMode;
     public enum Direction { Up, Down, Left, Right };
     private int _levelIndex;
     private bool _canStart, _cheatActive, _dead, _usingMobile;
@@ -12,7 +13,7 @@ public class GameFunctionsController : MonoBehaviour //Pensado para guardar elem
 
     private void Awake()
     {
-        if(Application.platform == RuntimePlatform.Android)
+        if(Application.platform == RuntimePlatform.Android || mobileMode)
         {
             _usingMobile = true;
         }
@@ -26,7 +27,7 @@ public class GameFunctionsController : MonoBehaviour //Pensado para guardar elem
             Destroy(gameObject);
         }
         string sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName[0] == 'L')
+        if (sceneName[0] == 'L') //Si cargamos desde el editor un nivel mayor que el primero nos deja activado el truco del contraste
         {
             _cheatActive = true;
             _levelIndex = int.Parse(sceneName[sceneName.Length-1].ToString());

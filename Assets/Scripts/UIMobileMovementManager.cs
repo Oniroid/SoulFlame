@@ -24,13 +24,4 @@ public class UIMobileMovementManager : MonoBehaviour
             GameEvents.MobileMovement.Invoke(_currentDirection);
         }
     }
-
-    public void OnUp()
-    {
-        GameEvents.OnPressUp.Invoke();
-    }
-    public void OnDown()
-    {
-        GameEvents.OnPressDown.Invoke();
-    }
 }

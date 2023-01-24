@@ -11,7 +11,7 @@ public class CharacterMovement : MonoBehaviour
     private Animator _animator;
     public enum DieType {Arrow, Ray};
     private GameFunctionsController.Direction _targetDir, _lastDir;
-    private bool _moving, _keeping, _movementDisabled, _pressingButton, _restarting;
+    private bool _moving, _keeping, _end, _pressingButton, _restarting;
     [SerializeField] private LayerMask _mask;
     SpriteRenderer _sr;
     private GameFunctionsController _gameFunctionsController;
@@ -102,14 +102,14 @@ public class CharacterMovement : MonoBehaviour
     }
     void Update()
     {
-        if (_movementDisabled)
+        if (_end)
         {
             return;
         }
         if (transform.position.y >= 4)
         {
             _keeping = false;
-            _movementDisabled = false;
+            _end = true;
             StartCoroutine(CrNext());
             IEnumerator CrNext()
             {
@@ -118,6 +118,7 @@ public class CharacterMovement : MonoBehaviour
                 _gameFunctionsController.LevelIndex++;
                 if (_gameFlowController != null)
                 {
+                    FindObjectOfType<RestartButton>(true).SetEnable(true);
                     _gameFlowController.NextLevelScene();
                 }
                 else
@@ -331,6 +332,7 @@ public class CharacterMovement : MonoBehaviour
             IEnumerator CrRestart()
             {
                 yield return new WaitForSeconds(1.25f);
+                _gameFunctionsController.Dead = false;
                 if (SceneManager.sceneCount > 1)
                 {
                     SceneManager.LoadScene(gameObject.scene.name, LoadSceneMode.Additive);

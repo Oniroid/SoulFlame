@@ -16,17 +16,23 @@ public class StartSceneController : MonoBehaviour
 
     public void OnAnyKey(InputAction.CallbackContext value)
     {
+        LoadGame();
+    }
+
+    public void LoadGame()
+    {
         if (_canLoad)
         {
             StartCoroutine(CrLoadLevel());
-            IEnumerator CrLoadLevel()
-            {
-                _canLoad = false;
-                _press.SetActive(false);
-                _fadeOut.SetActive(true);
-                yield return new WaitForSeconds(1f);
-                FindObjectOfType<GameFlowController>().FirstLevel();
-            }
         }
+    }
+
+    IEnumerator CrLoadLevel()
+    {
+        _canLoad = false;
+        _press.SetActive(false);
+        _fadeOut.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        FindObjectOfType<GameFlowController>().FirstLevel();
     }
 }
