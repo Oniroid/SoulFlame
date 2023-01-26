@@ -20,9 +20,15 @@ public class MapFiller : MonoBehaviour
     {
         selectedTile = newSelectedTile;
     }
-    void Start()
+    IEnumerator Start()
     {
-        string jsonLevel = System.IO.File.ReadAllText(Application.dataPath + "/"+ _levelName+".json");
+        if (!File.Exists(Application.streamingAssetsPath + " / StreamingAssets / " + _levelName + ".json"))
+        {
+            File.Create(Application.streamingAssetsPath + "/StreamingAssets/" + _levelName + ".json");
+            File.WriteAllText(Application.streamingAssetsPath + _levelName + ".json", JsonUtility.ToJson(new Level()));
+            yield return new WaitForSeconds(1f);
+        }
+        string jsonLevel = File.ReadAllText(Application.streamingAssetsPath + "/StreamingAssets/" + _levelName + ".json");
         Level l = JsonUtility.FromJson<Level>(jsonLevel);
 
         _tiles = new List<List<GameObject>>();
@@ -65,10 +71,8 @@ public class MapFiller : MonoBehaviour
             }
         }
         Level l = new Level(tilesToJSON);
-        File.WriteAllText(Application.dataPath+"/"+_levelName+".json", JsonUtility.ToJson(l));
-        
+        File.WriteAllText(Application.streamingAssetsPath + "/StreamingAssets/"+_levelName+".json", JsonUtility.ToJson(l));      
     }
-
     //private void Update()
     //{
     //    if (Input.GetKeyDown(KeyCode.S))
@@ -87,6 +91,14 @@ public class Level
     public Level(List<int> tiles)
     {
         _tiles = tiles;
+    }
+    public Level()
+    {
+        _tiles = new List<int>();
+        for (int i = 0; i < 110; i++)
+        {
+            _tiles.Add(0);
+        }
     }
 }
 
