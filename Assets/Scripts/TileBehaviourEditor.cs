@@ -1,36 +1,57 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
-public class TileBehaviourEditor : MonoBehaviour
+public class TileBehaviourEditor : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
 {
-    [SerializeField] private TextMeshPro _valueText;
+    [SerializeField] private TextMeshProUGUI _valueText;
     private int _tile;
     private MapFiller _mapFiller;
+    private Image _image;
     public int Tile
     {
         get { return _tile;}
         set {
             _tile = value;
-            GetComponent<SpriteRenderer>().sprite = _mapFiller.GetSprite(value);
+            GetComponent<Image>().sprite = _mapFiller.GetSprite(value);
+            _valueText.text = Tile.ToString();
         }
     }
-    SpriteRenderer _sprite;
 
     void Awake()
     {
         _mapFiller = FindObjectOfType<MapFiller>();
+        _image = GetComponent<Image>();
     }
 
-    void Update()
+    public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        _valueText.text = Tile.ToString();
+        if (Mouse.current.rightButton.isPressed)
+        {
+            Tile = 1;
+            _image.sprite = _mapFiller.GetSprite(1);
+            return;
+        }
+        if (Mouse.current.leftButton.isPressed && Tile != MapFiller.selectedTile)
+        {
+            Tile = MapFiller.selectedTile;
+            _image.sprite = _mapFiller.GetSprite(Tile);
+        }
     }
-
-    private void OnMouseDown()
+    public void OnPointerDown(PointerEventData pointerEventData)
     {
-        Tile = MapFiller.selectedTile;
-        GetComponent<SpriteRenderer>().sprite = _mapFiller.GetSprite(Tile);
+        if (Mouse.current.rightButton.isPressed)
+        {
+            Tile = 1;
+            _image.sprite = _mapFiller.GetSprite(1);
+            return;
+        }
+        if (Tile != MapFiller.selectedTile)
+        {
+            Tile = MapFiller.selectedTile;
+            _image.sprite = _mapFiller.GetSprite(Tile);
+        }
     }
 }

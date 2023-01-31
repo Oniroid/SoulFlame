@@ -7,13 +7,14 @@ using UnityEngine.InputSystem;
 
 public class MapFiller : MonoBehaviour
 {
-    [SerializeField] private GameObject _tilePrefab;
     [SerializeField] private List<Sprite> _sprites;
-    private List<List<GameObject>> _tiles;
-    public static int selectedTile;
+    [SerializeField] private Transform _tilesHolder;
     [SerializeField] private GameObject _buttonTilePrefab;
     [SerializeField] private GameObject _buttonHolder;
     [SerializeField] private string _levelName;
+    public static int selectedTile;
+    private List<List<Image>> _tiles;
+
     public Sprite GetSprite(int spriteIndex)
     {
         return _sprites[spriteIndex];
@@ -30,18 +31,17 @@ public class MapFiller : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
         string jsonLevel = File.ReadAllText(Application.streamingAssetsPath + "/" + _levelName + ".json");
-        print(jsonLevel);
         Level l = JsonUtility.FromJson<Level>(jsonLevel);
-        _tiles = new List<List<GameObject>>();
+        _tiles = new List<List<Image>>();
         for (int i = 0; i < 10; i++)
         {
-            List<GameObject> tilesRow = new List<GameObject>();
+            List<Image> tilesRow = new List<Image>();
             for (int j = 0; j < 11; j++)
             {
-                GameObject g = Instantiate(_tilePrefab, new Vector3(-5f + j, -5f + i, 0), Quaternion.identity);
-                tilesRow.Add(g);
+                Image targetTile = _tilesHolder.GetChild((11 * i) + j).GetComponent<Image>();
+                tilesRow.Add(targetTile);
                 int tileValue = l._tiles[(11 * i) + j];
-                g.GetComponent<TileBehaviourEditor>().Tile = tileValue;
+                targetTile.GetComponent<TileBehaviourEditor>().Tile = tileValue;
             }
             _tiles.Add(tilesRow);
         }
