@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.InputSystem;
+
 public class MapFiller : MonoBehaviour
 {
     [SerializeField] private GameObject _tilePrefab;
@@ -22,15 +24,14 @@ public class MapFiller : MonoBehaviour
     }
     IEnumerator Start()
     {
-        if (!File.Exists(Application.streamingAssetsPath + " / StreamingAssets / " + _levelName + ".json"))
+        if (!File.Exists(Application.streamingAssetsPath +"/"+ _levelName + ".json"))
         {
-            File.Create(Application.streamingAssetsPath + "/StreamingAssets/" + _levelName + ".json");
-            File.WriteAllText(Application.streamingAssetsPath + _levelName + ".json", JsonUtility.ToJson(new Level()));
+            File.WriteAllText(Application.streamingAssetsPath + "/" + _levelName + ".json", JsonUtility.ToJson(new Level()));
             yield return new WaitForSeconds(1f);
         }
-        string jsonLevel = File.ReadAllText(Application.streamingAssetsPath + "/StreamingAssets/" + _levelName + ".json");
+        string jsonLevel = File.ReadAllText(Application.streamingAssetsPath + "/" + _levelName + ".json");
+        print(jsonLevel);
         Level l = JsonUtility.FromJson<Level>(jsonLevel);
-
         _tiles = new List<List<GameObject>>();
         for (int i = 0; i < 10; i++)
         {
@@ -71,15 +72,15 @@ public class MapFiller : MonoBehaviour
             }
         }
         Level l = new Level(tilesToJSON);
-        File.WriteAllText(Application.streamingAssetsPath + "/StreamingAssets/"+_levelName+".json", JsonUtility.ToJson(l));      
+        File.WriteAllText(Application.streamingAssetsPath + "/" + _levelName + ".json", JsonUtility.ToJson(l));      
     }
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.S))
-    //    {
-    //        SaveLevel();
-    //    }
-    //}
+    private void Update()
+    {
+        if (Keyboard.current[Key.S].wasPressedThisFrame)
+        {
+            SaveLevel();
+        }
+    }
 }
 
 
