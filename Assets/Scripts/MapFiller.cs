@@ -9,8 +9,8 @@ using UnityEditor;
 public class MapFiller : MonoBehaviour
 {
     [SerializeField] private List<Sprite> _sprites;
-    [SerializeField] private Transform _tilesHolder, _toolsHolder;
-    [SerializeField] private GameObject _buttonTilePrefab, _toolsPanelPrefab;
+    [SerializeField] private Transform _tilesHolder, _toolsHolder, _categoryButtonsHolder;
+    [SerializeField] private GameObject _buttonTilePrefab, _toolsPanelPrefab, _categoryButtonPrefab;
     [SerializeField] private string _levelName;
     public static int selectedTile;
     private List<List<Image>> _tiles;
@@ -88,7 +88,7 @@ public class MapFiller : MonoBehaviour
         {
             string folderName = subfolders[i].Split('/')[subfolders[i].Split('/').Length - 1];
             Transform t = Instantiate(_toolsPanelPrefab, _toolsHolder).transform;
-            t.GetComponent<ToolsPanel>().Init(folderName);
+            Instantiate(_categoryButtonPrefab, _categoryButtonsHolder).GetComponent<CategoryButton>().Init(folderName, i);
             toolPanels.Add(t);
 
             DirectoryInfo d = new DirectoryInfo(Application.dataPath + "/Resources/MapCreator/" + folderName);
