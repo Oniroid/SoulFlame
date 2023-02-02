@@ -12,16 +12,18 @@ public class MapFiller : MonoBehaviour
     [SerializeField] private Transform _tilesHolder, _toolsHolder, _categoryButtonsHolder;
     [SerializeField] private GameObject _buttonTilePrefab, _toolsPanelPrefab, _categoryButtonPrefab;
     [SerializeField] private string _levelName;
-    public static int selectedTile;
+    public static string selectedTilePath;
     private List<List<Image>> _tiles;
     private Level _level;
-    public Sprite GetSprite(int spriteIndex)
+    List<Transform> _toolPanels;
+
+    public Sprite GetSprite(string spritePath)
     {
-        return _sprites[spriteIndex];
+        return Resources.Load<Sprite>(spritePath);
     }
-    public void SelectTile(int newSelectedTile)
+    public void SelectTile(string newSelectedTile)
     {
-        selectedTile = newSelectedTile;
+        selectedTilePath = newSelectedTile;
     }
     IEnumerator Start()
     {
@@ -44,7 +46,7 @@ public class MapFiller : MonoBehaviour
     }
     public void SaveLevel()
     {
-        List<int> tilesToJSON = new List<int>();
+        List<string> tilesToJSON = new List<string>();
         for (int i = 0; i < _tiles.Count; i++)
         {
             for (int j = 0; j < _tiles[i].Count; j++)
@@ -66,7 +68,7 @@ public class MapFiller : MonoBehaviour
             {
                 Image targetTile = _tilesHolder.GetChild((11 * i) + j).GetComponent<Image>();
                 tilesRow.Add(targetTile);
-                int tileValue = _level._tiles[(11 * i) + j];
+                string tileValue = _level._tilePath[(11 * i) + j];
                 targetTile.GetComponent<TileBehaviourEditor>().Tile = tileValue;
             }
             _tiles.Add(tilesRow);
@@ -83,13 +85,13 @@ public class MapFiller : MonoBehaviour
     void LoadSideTools()
     {
         string[] subfolders = AssetDatabase.GetSubFolders("Assets/Resources/MapCreator");
-        List<Transform> toolPanels = new List<Transform>();
-        for (int i = 0; i < subfolders.Length; i++)
+        _toolPanels = new List<Transform>();
+        for (int i = subfolders.Length-1; i >= 0; i--)
         {
             string folderName = subfolders[i].Split('/')[subfolders[i].Split('/').Length - 1];
             Transform t = Instantiate(_toolsPanelPrefab, _toolsHolder).transform;
-            Instantiate(_categoryButtonPrefab, _categoryButtonsHolder).GetComponent<CategoryButton>().Init(folderName, i);
-            toolPanels.Add(t);
+            Instantiate(_categoryButtonPrefab, _categoryButtonsHolder).GetComponent<CategoryButton>().Init(folderName, subfolders.Length -1-i);
+            _toolPanels.Add(t);
 
             DirectoryInfo d = new DirectoryInfo(Application.dataPath + "/Resources/MapCreator/" + folderName);
             if (d.GetFiles().Length != 0)
@@ -99,16 +101,36 @@ public class MapFiller : MonoBehaviour
                     string convertedName = file.Name;
                     convertedName = convertedName.Remove(convertedName.Length - 4, 4);
                     Sprite[] sprites = Resources.LoadAll<Sprite>($"MapCreator/{folderName}/{convertedName}");
-                    for (int j = 0; j < sprites.Length; j++)
+                    if (sprites.Length == 0) //De esta forma sabemos si es un sprite suelto
                     {
                         GameObject g = Instantiate(_buttonTilePrefab, t.GetChild(0));
-                        g.GetComponent<Image>().sprite = sprites[j];
-                        int captured = j;
-                        g.GetComponent<Button>().onClick.AddListener(() => SelectTile(captured));
+                        g.GetComponent<Image>().sprite = Resources.Load<Sprite>($"MapCreator/{folderName}/{convertedName}");
+                    }
+                    else
+                    {
+                        for (int j = 0; j < sprites.Length; j++)
+                        {
+                            print($"MapCreator /{ folderName}/{ convertedName}/{j}");
+                            //Crear una clase que tenga el path y el indice del sprite y, si es -1 es que es un sprite suelto :P
+                            GameObject g = Instantiate(_buttonTilePrefab, t.GetChild(0));
+                            g.GetComponent<Image>().sprite = sprites[j];
+                            string captured = "j";
+                            g.GetComponent<Button>().onClick.AddListener(() => SelectTile(captured));
+                        }
                     }
                 }
             }
         }
+        ShowCategory(0);
+    }
+
+    public void ShowCategory(int categoryIndex)
+    {
+        foreach (Transform t in _toolPanels)
+        {
+            t.gameObject.SetActive(false);
+        }
+        _toolPanels[categoryIndex].gameObject.SetActive(true);
     }
 }
 
@@ -116,18 +138,18 @@ public class MapFiller : MonoBehaviour
 [System.Serializable]
 public class Level
 {
-    public List<int> _tiles;
+    public List<string> _tilePath;
 
-    public Level(List<int> tiles)
+    public Level(List<string> tilesPath)
     {
-        _tiles = tiles;
+        _tilePath = tilesPath;
     }
     public Level()
     {
-        _tiles = new List<int>();
+        _tilePath = new List<string>();
         for (int i = 0; i < 110; i++)
         {
-            _tiles.Add(0);
+            _tilePath.Add("");
         }
     }
 }

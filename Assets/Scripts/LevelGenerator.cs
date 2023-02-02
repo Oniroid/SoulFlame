@@ -5,12 +5,11 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject _tilePrefab;
-    [SerializeField] private List<Sprite> _sprites;
     Level _level;
     [SerializeField] private string _levelName;
-    public Sprite GetSprite(int spriteIndex)
+    public Sprite GetSprite(string spritePath)
     {
-        return _sprites[spriteIndex];
+        return Resources.Load<Sprite>(spritePath);
     }
     void Start()
     {
@@ -22,8 +21,8 @@ public class LevelGenerator : MonoBehaviour
             for (int j = 0; j < 11; j++)
             {
                 GameObject g = Instantiate(_tilePrefab, new Vector3(-5f + j, -5f + i, 0), Quaternion.identity);
-                int tileValue = _level._tiles[(11 * i) + j];
-                g.GetComponent<TileBehaviour>().Tile = tileValue;
+                string tilePath = _level._tilePath[(11 * i) + j];
+                g.GetComponent<TileBehaviour>().TilePath = tilePath;
             }
         }
     }

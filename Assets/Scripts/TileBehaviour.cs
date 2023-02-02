@@ -6,13 +6,13 @@ using UnityEngine;
 public class TileBehaviour: MonoBehaviour
 {
     [SerializeField] private TextMeshPro _valueText;
-    private int _tile;
+    private string _tilePath;
     private LevelGenerator _levelGenerator;
-    public int Tile
+    public string TilePath
     {
-        get { return _tile;}
+        get { return _tilePath; }
         set {
-            _tile = value;
+            _tilePath = value;
             GetComponent<SpriteRenderer>().sprite = _levelGenerator.GetSprite(value);
         }
     }

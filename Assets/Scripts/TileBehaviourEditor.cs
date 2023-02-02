@@ -7,14 +7,14 @@ using UnityEngine.EventSystems;
 public class TileBehaviourEditor : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
 {
     [SerializeField] private TextMeshProUGUI _valueText;
-    private int _tile;
+    private string _tilePath;
     private MapFiller _mapFiller;
     private Image _image;
-    public int Tile
+    public string Tile
     {
-        get { return _tile;}
+        get { return _tilePath;}
         set {
-            _tile = value;
+            _tilePath = value;
             GetComponent<Image>().sprite = _mapFiller.GetSprite(value);
             _valueText.text = Tile.ToString();
         }
@@ -30,13 +30,13 @@ public class TileBehaviourEditor : MonoBehaviour, IPointerEnterHandler, IPointer
     {
         if (Mouse.current.rightButton.isPressed)
         {
-            Tile = 1;
-            _image.sprite = _mapFiller.GetSprite(1);
+            Tile = "";
+            _image.sprite = _mapFiller.GetSprite(Tile);
             return;
         }
-        if (Mouse.current.leftButton.isPressed && Tile != MapFiller.selectedTile)
+        if (Mouse.current.leftButton.isPressed && Tile != MapFiller.selectedTilePath)
         {
-            Tile = MapFiller.selectedTile;
+            Tile = MapFiller.selectedTilePath;
             _image.sprite = _mapFiller.GetSprite(Tile);
         }
     }
@@ -44,13 +44,13 @@ public class TileBehaviourEditor : MonoBehaviour, IPointerEnterHandler, IPointer
     {
         if (Mouse.current.rightButton.isPressed)
         {
-            Tile = 1;
-            _image.sprite = _mapFiller.GetSprite(1);
+            Tile = "";
+            _image.sprite = _mapFiller.GetSprite(Tile);
             return;
         }
-        if (Tile != MapFiller.selectedTile)
+        if (Tile != MapFiller.selectedTilePath)
         {
-            Tile = MapFiller.selectedTile;
+            Tile = MapFiller.selectedTilePath;
             _image.sprite = _mapFiller.GetSprite(Tile);
         }
     }
