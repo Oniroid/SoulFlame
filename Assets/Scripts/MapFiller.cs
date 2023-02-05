@@ -110,8 +110,11 @@ public class MapFiller : MonoBehaviour
                     {
                         for (int j = 0; j < sprites.Length; j++)
                         {
-                            print($"MapCreator /{ folderName}/{ convertedName}/{j}");
-                            //Crear una clase que tenga el path y el indice del sprite y, si es -1 es que es un sprite suelto :P
+                            if(j == 0)
+                            {
+                                SplitPath($"MapCreator/{ folderName}/{ convertedName}/{j}");
+                            }
+                            //print($"MapCreator /{ folderName}/{ convertedName}/{j}");
                             GameObject g = Instantiate(_buttonTilePrefab, t.GetChild(0));
                             g.GetComponent<Image>().sprite = sprites[j];
                             string captured = "j";
@@ -122,6 +125,19 @@ public class MapFiller : MonoBehaviour
             }
         }
         ShowCategory(0);
+    }
+
+    public void SplitPath(string path)
+    {
+        string[] converted = path.Split('/');
+        string final = "";
+        for (int i = 0; i < converted.Length-1; i++)
+        {
+            final += converted[i] + "/";
+        }
+        final = final.Remove(final.Length-1,1);
+        print(final); //ruta
+        print(converted[converted.Length-1]); //indice
     }
 
     public void ShowCategory(int categoryIndex)
@@ -149,7 +165,7 @@ public class Level
         _tilePath = new List<string>();
         for (int i = 0; i < 110; i++)
         {
-            _tilePath.Add("");
+            _tilePath.Add("MapCreator/Walls/paredes/0");
         }
     }
 }
