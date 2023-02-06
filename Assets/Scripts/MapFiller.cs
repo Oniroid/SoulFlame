@@ -108,6 +108,7 @@ public class MapFiller : MonoBehaviour
         {
             string folderName = subfolders[i].Split('/')[subfolders[i].Split('/').Length - 1];
             Transform t = Instantiate(_toolsPanelPrefab, _toolsHolder).transform;
+            //Revisar si hay varios archivos para crear sub rutas
             Instantiate(_categoryButtonPrefab, _categoryButtonsHolder).GetComponent<CategoryButton>().Init(folderName, i, $"MapCreator/{folderName}/");
             if(i == 0) 
             {
