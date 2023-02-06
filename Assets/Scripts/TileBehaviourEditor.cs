@@ -6,20 +6,28 @@ using UnityEngine.EventSystems;
 
 public class TileBehaviourEditor : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
 {
-    [SerializeField] private TextMeshProUGUI _valueText;
+    private int _tileIndex;
     private string _tilePath;
     private MapFiller _mapFiller;
     private Image _image;
-    public string Tile
+    public int Tile
     {
-        get { return _tilePath;}
+        get { return _tileIndex; }
         set {
-            _tilePath = value;
-            GetComponent<Image>().sprite = _mapFiller.GetSprite(value);
-            _valueText.text = Tile.ToString();
+            _tileIndex = value;
+            if(MapFiller.selectedCategoryPath != null)
+            GetComponent<Image>().sprite = _mapFiller.GetSpriteFromRawPath(MapFiller.selectedCategoryPath + value);
         }
     }
-
+    public string TilePath
+    {
+        get { return _tilePath; }
+        set
+        {
+            _tilePath = value;
+            GetComponent<Image>().sprite = _mapFiller.GetSpriteFromRawPath(value);
+        }
+    }
     void Awake()
     {
         _mapFiller = FindObjectOfType<MapFiller>();
@@ -28,30 +36,32 @@ public class TileBehaviourEditor : MonoBehaviour, IPointerEnterHandler, IPointer
 
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
-        if (Mouse.current.rightButton.isPressed)
+        //if (Mouse.current.rightButton.isPressed)
+        //{
+        //    Tile = 0;
+        //    _image.sprite = _mapFiller.GetSprite(Tile);
+        //    return;
+        //}
+        if (Mouse.current.leftButton.isPressed && TilePath != (MapFiller.selectedCategoryPath + MapFiller.selectedTileIndex))
         {
-            Tile = "";
-            _image.sprite = _mapFiller.GetSprite(Tile);
-            return;
-        }
-        if (Mouse.current.leftButton.isPressed && Tile != MapFiller.selectedTilePath)
-        {
-            Tile = MapFiller.selectedTilePath;
-            _image.sprite = _mapFiller.GetSprite(Tile);
+            Tile = MapFiller.selectedTileIndex;
+            TilePath = MapFiller.selectedCategoryPath+ MapFiller.selectedTileIndex;
+            _image.sprite = _mapFiller.GetSpriteFromRawPath(TilePath);
         }
     }
     public void OnPointerDown(PointerEventData pointerEventData)
     {
-        if (Mouse.current.rightButton.isPressed)
+        //if (Mouse.current.rightButton.isPressed)
+        //{
+        //    Tile = "";
+        //    _image.sprite = _mapFiller.GetSprite(Tile);
+        //    return;
+        //}
+        if (TilePath != (MapFiller.selectedCategoryPath + MapFiller.selectedTileIndex))
         {
-            Tile = "";
-            _image.sprite = _mapFiller.GetSprite(Tile);
-            return;
-        }
-        if (Tile != MapFiller.selectedTilePath)
-        {
-            Tile = MapFiller.selectedTilePath;
-            _image.sprite = _mapFiller.GetSprite(Tile);
+            Tile = MapFiller.selectedTileIndex;
+            TilePath = MapFiller.selectedCategoryPath + MapFiller.selectedTileIndex;
+            _image.sprite = _mapFiller.GetSpriteFromRawPath(TilePath);
         }
     }
 }

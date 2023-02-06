@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TileBehaviour: MonoBehaviour
 {
-    [SerializeField] private TextMeshPro _valueText;
+    //TILE IN-GAME
     private string _tilePath;
     private LevelGenerator _levelGenerator;
     public string TilePath
