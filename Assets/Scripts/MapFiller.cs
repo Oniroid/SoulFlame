@@ -12,6 +12,7 @@ public class MapFiller : MonoBehaviour
     [SerializeField] private Transform _tilesHolder, _toolsHolder, _categoryButtonsHolder;
     [SerializeField] private GameObject _buttonTilePrefab, _toolsPanelPrefab, _categoryButtonPrefab;
     [SerializeField] private string _levelName;
+    [SerializeField] private GameObject _lines;
     public static string selectedCategoryPath;
     public static int selectedTileIndex;
     private List<List<Image>> _tiles;
@@ -171,7 +172,12 @@ public class MapFiller : MonoBehaviour
         }
         _toolPanels[categoryIndex].gameObject.SetActive(true);
     }
+    public void LinesButton()
+    {
+        _lines.SetActive(!_lines.activeSelf);
+    }
 }
+
 
 
 [System.Serializable]
