@@ -5,16 +5,16 @@ using UnityEngine.UI;
 using System.IO;
 using UnityEngine.InputSystem;
 using UnityEditor;
+using TMPro;
 
 public class MapFiller : MonoBehaviour
 {
-    [SerializeField] private List<Sprite> _sprites;
     [SerializeField] private Transform _tilesHolder, _toolsHolder, _categoryButtonsHolder;
     [SerializeField] private GameObject _buttonTilePrefab, _toolsPanelPrefab, _categoryButtonPrefab;
     [SerializeField] private string _levelName;
     [SerializeField] private GameObject _lines;
-    public static string selectedCategoryPath;
-    public static int selectedTileIndex;
+    [SerializeField] private TextMeshProUGUI _levelNameText;
+    public static string selectedPath;
     private List<List<Image>> _tiles;
     private Level _level;
     List<Transform> _toolPanels;
@@ -34,13 +34,9 @@ public class MapFiller : MonoBehaviour
         }
         return targetSprite;
     }
-    public void SelectTile(int newSelectedTile)
+    public void SelectTile(string newSelectedTile)
     {
-        selectedTileIndex = newSelectedTile;
-    }
-    public void SelectCategory(string selectedCategory)
-    {
-        selectedCategoryPath = selectedCategory;
+        selectedPath = newSelectedTile;
     }
 
     IEnumerator Start()
@@ -52,6 +48,7 @@ public class MapFiller : MonoBehaviour
         }
         string jsonLevel = File.ReadAllText(Application.streamingAssetsPath + "/" + _levelName + ".json");
         _level = JsonUtility.FromJson<Level>(jsonLevel);
+        _levelNameText.text = _levelName;
         LoadMap();
         LoadSideTools();
     }
@@ -87,7 +84,6 @@ public class MapFiller : MonoBehaviour
                 Image targetTile = _tilesHolder.GetChild((11 * i) + j).GetComponent<Image>();
                 tilesRow.Add(targetTile);
                 string tileValue = _level._tilePath[(11 * i) + j];
-                targetTile.GetComponent<TileBehaviourEditor>().Tile = GetPathIndex(tileValue);
                 targetTile.GetComponent<TileBehaviourEditor>().TilePath = tileValue;
             }
             _tiles.Add(tilesRow);
@@ -110,11 +106,7 @@ public class MapFiller : MonoBehaviour
             string folderName = subfolders[i].Split('/')[subfolders[i].Split('/').Length - 1];
             Transform t = Instantiate(_toolsPanelPrefab, _toolsHolder).transform;
             //Revisar si hay varios archivos para crear sub rutas
-            Instantiate(_categoryButtonPrefab, _categoryButtonsHolder).GetComponent<CategoryButton>().Init(folderName, i, $"MapCreator/{folderName}/");
-            if(i == 0) 
-            {
-                selectedCategoryPath = "MapCreator/" + folderName + "/";
-            }
+            Instantiate(_categoryButtonPrefab, _categoryButtonsHolder).GetComponent<CategoryButton>().Init(folderName, i);
             _toolPanels.Add(t);
             DirectoryInfo d = new DirectoryInfo(Application.dataPath + "/Resources/MapCreator/" + folderName);
             if (d.GetFiles().Length != 0)
@@ -137,12 +129,13 @@ public class MapFiller : MonoBehaviour
                             GameObject g = Instantiate(_buttonTilePrefab, t.GetChild(0));
                             int extract = j;
                             g.GetComponent<Image>().sprite = sprites[extract];
-                            g.GetComponent<Button>().onClick.AddListener(() => SelectTile(extract));
+                            g.GetComponent<Button>().onClick.AddListener(() => SelectTile($"MapCreator/{folderName}/{convertedName}/{extract}"));
                         }
                     }
                 }
             }
         }
+        selectedPath = "MapCreator/0_Walls/paredes/19";
         ShowCategory(0);
     }
 
@@ -178,8 +171,6 @@ public class MapFiller : MonoBehaviour
     }
 }
 
-
-
 [System.Serializable]
 public class Level
 {
@@ -194,7 +185,7 @@ public class Level
         _tilePath = new List<string>();
         for (int i = 0; i < 110; i++)
         {
-            _tilePath.Add("MapCreator/Walls/paredes/19");
+            _tilePath.Add("MapCreator/0_Walls/paredes/19");
         }
     }
 }

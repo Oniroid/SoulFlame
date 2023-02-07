@@ -8,19 +8,16 @@ public class CategoryButton : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _categoryName;
     private int _categoryIndex;
     private MapFiller _mapFiller;
-    private string _categoryPath;
 
-    public void Init(string category, int index, string path)
+    public void Init(string category, int index)
     {
         _categoryName.text = category;
         _categoryIndex = index;
-        _categoryPath = path;
         _mapFiller = FindObjectOfType<MapFiller>();
     }
 
     public void SelectCategory()
     {
         _mapFiller.ShowCategory(_categoryIndex);
-        _mapFiller.SelectCategory(_categoryPath);
     }
 }

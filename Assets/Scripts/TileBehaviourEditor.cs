@@ -6,26 +6,17 @@ using UnityEngine.EventSystems;
 
 public class TileBehaviourEditor : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
 {
-    private int _tileIndex;
     private string _tilePath;
     private MapFiller _mapFiller;
     private Image _image;
-    public int Tile
-    {
-        get { return _tileIndex; }
-        set {
-            _tileIndex = value;
-            if(MapFiller.selectedCategoryPath != null)
-            GetComponent<Image>().sprite = _mapFiller.GetSpriteFromRawPath(MapFiller.selectedCategoryPath + value);
-        }
-    }
+
     public string TilePath
     {
         get { return _tilePath; }
         set
         {
             _tilePath = value;
-            GetComponent<Image>().sprite = _mapFiller.GetSpriteFromRawPath(value);
+            _image.sprite = _mapFiller.GetSpriteFromRawPath(value);
         }
     }
     void Awake()
@@ -42,11 +33,9 @@ public class TileBehaviourEditor : MonoBehaviour, IPointerEnterHandler, IPointer
         //    _image.sprite = _mapFiller.GetSprite(Tile);
         //    return;
         //}
-        if (Mouse.current.leftButton.isPressed && TilePath != (MapFiller.selectedCategoryPath + MapFiller.selectedTileIndex))
+        if (Mouse.current.leftButton.isPressed && TilePath != MapFiller.selectedPath)
         {
-            Tile = MapFiller.selectedTileIndex;
-            TilePath = MapFiller.selectedCategoryPath+ MapFiller.selectedTileIndex;
-            _image.sprite = _mapFiller.GetSpriteFromRawPath(TilePath);
+            TilePath = MapFiller.selectedPath;
         }
     }
     public void OnPointerDown(PointerEventData pointerEventData)
@@ -57,11 +46,9 @@ public class TileBehaviourEditor : MonoBehaviour, IPointerEnterHandler, IPointer
         //    _image.sprite = _mapFiller.GetSprite(Tile);
         //    return;
         //}
-        if (TilePath != (MapFiller.selectedCategoryPath + MapFiller.selectedTileIndex))
+        if (TilePath != MapFiller.selectedPath)
         {
-            Tile = MapFiller.selectedTileIndex;
-            TilePath = MapFiller.selectedCategoryPath + MapFiller.selectedTileIndex;
-            _image.sprite = _mapFiller.GetSpriteFromRawPath(TilePath);
+            TilePath = MapFiller.selectedPath;
         }
     }
 }
