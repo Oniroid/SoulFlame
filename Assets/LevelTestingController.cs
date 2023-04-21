@@ -4,28 +4,20 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class GameFlowController : MonoBehaviour    //Pensado para los cambios de escena y/o estéticos
+public class LevelTestingController : MonoBehaviour    //Pensado para los cambios de escena y/o estéticos
 {
     [SerializeField] private GameObject _gradient, _body, _powerOn, _mobileUI;
     [SerializeField] private Animator _cameraAnim, _titleAnim, _brightAnim;
     [SerializeField] private AudioSource _aSource;
     private GameFunctionsController _gameFunctionsController;
-    public static GameFlowController GameFlowControllerInstance;
 
+    
     private void Awake()
     {
-        if (GameFlowControllerInstance == null)
-        {
-            GameFlowControllerInstance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (GameFlowControllerInstance != this)
-        {
-            Destroy(gameObject);
-        }
+
     }
 
-    IEnumerator Start()
+    void Start()
     {
         GameEvents.OnAlphaChange.AddListener(OnBright);
         GameEvents.OnStopAlpha.AddListener(StopBright);
@@ -33,9 +25,8 @@ public class GameFlowController : MonoBehaviour    //Pensado para los cambios de
         _gradient.SetActive(true);
         _body.SetActive(false);
         _powerOn.SetActive(false);
-
-        yield return new WaitForSeconds(3);
-        _gameFunctionsController.CanStart = true;
+        StartGameCallBack();
+        FirstCallBack();
     }
 
     public void OnAnyKey(InputAction.CallbackContext value)
@@ -90,7 +81,7 @@ public class GameFlowController : MonoBehaviour    //Pensado para los cambios de
     public void FirstCallBack()
     {
         _aSource.Play();
-        SceneManager.LoadScene("Start",LoadSceneMode.Additive);
+        SceneManager.LoadScene("Start", LoadSceneMode.Additive);
     }
     public void FirstLevel()
     {
@@ -100,7 +91,7 @@ public class GameFlowController : MonoBehaviour    //Pensado para los cambios de
     }
     public void NextLevelScene()
     {
-        SceneManager.UnloadSceneAsync($"Level{_gameFunctionsController.LevelIndex-1}");
+        SceneManager.UnloadSceneAsync($"Level{_gameFunctionsController.LevelIndex - 1}");
         SceneManager.LoadScene($"Level{_gameFunctionsController.LevelIndex}", LoadSceneMode.Additive);
     }
 }
