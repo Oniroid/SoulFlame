@@ -29,8 +29,8 @@ public class GameFunctionsController : MonoBehaviour //Pensado para guardar elem
         string sceneName = SceneManager.GetActiveScene().name;
         if (sceneName[0] == 'L') //Si cargamos desde el editor un nivel mayor que el primero nos deja activado el truco del contraste
         {
-            _cheatActive = true;
-            _levelIndex = int.Parse(sceneName[sceneName.Length-1].ToString());
+            //_cheatActive = true;
+            //_levelIndex = int.Parse(sceneName[sceneName.Length-1].ToString());
         }
     }
 

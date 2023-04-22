@@ -22,7 +22,6 @@ public class LevelTestingController : MonoBehaviour    //Pensado para los cambio
         GameEvents.OnAlphaChange.AddListener(OnBright);
         GameEvents.OnStopAlpha.AddListener(StopBright);
         _gameFunctionsController = FindObjectOfType<GameFunctionsController>();
-        _gradient.SetActive(true);
         _body.SetActive(false);
         _powerOn.SetActive(false);
         StartGameCallBack();
@@ -81,7 +80,7 @@ public class LevelTestingController : MonoBehaviour    //Pensado para los cambio
     public void FirstCallBack()
     {
         _aSource.Play();
-        SceneManager.LoadScene("Start", LoadSceneMode.Additive);
+        SceneManager.LoadScene(PlayerPrefs.GetString("LevelToTest"), LoadSceneMode.Additive);
     }
     public void FirstLevel()
     {

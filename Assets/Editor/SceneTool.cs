@@ -51,14 +51,12 @@ public class SceneTool : MonoBehaviour{
     public static void TestScene0()
     {
         PlayerPrefs.SetString("LevelToTest", "Level0");
-        LoadScene("Assets/Scenes/Contrast_Room.unity");
     }
 
     [MenuItem("Test Scene/Level1")]
     public static void TestScene1()
     {
         PlayerPrefs.SetString("LevelToTest", "Level1");
-        LoadScene("Assets/Scenes/Contrast_Room.unity");
     }
 }
 
