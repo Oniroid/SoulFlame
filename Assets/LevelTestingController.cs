@@ -80,7 +80,7 @@ public class LevelTestingController : MonoBehaviour    //Pensado para los cambio
     public void FirstCallBack()
     {
         _aSource.Play();
-        SceneManager.LoadScene(PlayerPrefs.GetString("LevelToTest"), LoadSceneMode.Additive);
+        SceneManager.LoadScene(PlayerPrefs.GetString("LevelToTest", "Level0"), LoadSceneMode.Additive);
     }
     public void FirstLevel()
     {

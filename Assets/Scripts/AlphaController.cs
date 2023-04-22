@@ -17,11 +17,15 @@ public class AlphaController : MonoBehaviour
 
     void Update()
     {
-        if(_gameFunctionsController == null)
-        {
-            return;
-        }
-        if (!_gameFunctionsController.CheatActive || !_changingAlpha)
+        //if(_gameFunctionsController == null)
+        //{
+        //    return;
+        //}
+        //if (!_gameFunctionsController.CheatActive || !_changingAlpha)
+        //{
+        //    return;
+        //}
+        if(!_changingAlpha)
         {
             return;
         }
@@ -47,19 +51,13 @@ public class AlphaController : MonoBehaviour
 
     public void OnAlpha(bool up)
     {
-        if (!_gameFunctionsController.CheatActive)
-        {
-            return;
-        }
+
         _changingAlpha = true;
         _up = up;
     }
 
     public void OnAlphaStop()
     {
-        if (_changingAlpha)
-        {
-            _changingAlpha = false;
-        }
+        _changingAlpha = false;
     }
 }

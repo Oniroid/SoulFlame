@@ -51,12 +51,39 @@ public class SceneTool : MonoBehaviour{
     public static void TestScene0()
     {
         PlayerPrefs.SetString("LevelToTest", "Level0");
+        LoadScene("Assets/Scenes/LevelTesting.unity");
     }
 
     [MenuItem("Test Scene/Level1")]
     public static void TestScene1()
     {
         PlayerPrefs.SetString("LevelToTest", "Level1");
+        LoadScene("Assets/Scenes/LevelTesting.unity");
+
+    }
+
+    [MenuItem("Test Scene/Level2")]
+    public static void TestScene2()
+    {
+        PlayerPrefs.SetString("LevelToTest", "Level2");
+        LoadScene("Assets/Scenes/LevelTesting.unity");
+
+    }
+
+    [MenuItem("Test Scene/Level3")]
+    public static void TestScene3()
+    {
+        PlayerPrefs.SetString("LevelToTest", "Level3");
+        LoadScene("Assets/Scenes/LevelTesting.unity");
+
+    }
+
+    [MenuItem("Test Scene/Level4")]
+    public static void TestScene4()
+    {
+        PlayerPrefs.SetString("LevelToTest", "Level4");
+        LoadScene("Assets/Scenes/LevelTesting.unity");
+
     }
 }
 

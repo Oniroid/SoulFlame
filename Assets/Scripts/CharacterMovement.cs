@@ -17,8 +17,10 @@ public class CharacterMovement : MonoBehaviour
     private GameFunctionsController _gameFunctionsController;
     private GameFlowController _gameFlowController;
     private Vector2 _inputMovement;
+    private MovementJoystick _joystick;
     private void Start()
     {
+        _joystick = FindObjectOfType<MovementJoystick>();
         _gameFunctionsController = FindObjectOfType<GameFunctionsController>();
         _gameFlowController = FindObjectOfType<GameFlowController>();
         _sr = GetComponent<SpriteRenderer>();
@@ -30,36 +32,23 @@ public class CharacterMovement : MonoBehaviour
 
     public void OnMovement(InputAction.CallbackContext value)
     {
-        _inputMovement = value.ReadValue<Vector2>();
-        if (Mathf.Abs(_inputMovement.magnitude) > _minMovement)
-        {
-            _keeping = true;
-            if (!_moving)
-            {
-                CheckInputs();
-            }
-        }
-        else
-        {
-            _keeping = false;
-        }
+        //_inputMovement = value.ReadValue<Vector2>();
+        //if (Mathf.Abs(_inputMovement.magnitude) > _minMovement)
+        //{
+        //    _keeping = true;
+        //    if (!_moving)
+        //    {
+        //        CheckInputs();
+        //    }
+        //}
+        //else
+        //{
+        //    _keeping = false;
+        //}
     }
     public void OnContrast(InputAction.CallbackContext value)
     {
-        if (value.canceled)
-        {
-            GameEvents.OnStopAlpha.Invoke();
-            return;
-        }
-        float contrastInput = value.ReadValue<float>();
-        if (contrastInput > 0)
-        {
-            GameEvents.OnAlphaInput.Invoke(true);
-        }
-        else
-        {
-            GameEvents.OnAlphaInput.Invoke(false);
-        }
+
     }
     public void OnRestart(InputAction.CallbackContext value)
     {
@@ -100,8 +89,26 @@ public class CharacterMovement : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         ReloadScene();
     }
+
+    public void CheckJoystickInput()
+    {
+        _inputMovement = _joystick.GetDirection();
+        if (Mathf.Abs(_inputMovement.magnitude) > _minMovement)
+        {
+            _keeping = true;
+            if (!_moving)
+            {
+                CheckInputs();
+            }
+        }
+        else
+        {
+            _keeping = false;
+        }
+    }
     void Update()
     {
+        CheckJoystickInput();
         if (_end)
         {
             return;
@@ -128,13 +135,13 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
-        if (_gameFunctionsController.UsingMobile)
-        {
-            if (!_moving && _pressingButton)
-            {
-                StartCoroutine(CrMoveChar(_targetDir));
-            }
-        }
+        //if (_gameFunctionsController.UsingMobile)
+        //{
+        //    if (!_moving && _pressingButton)
+        //    {
+        //        StartCoroutine(CrMoveChar(_targetDir));
+        //    }
+        //}
     }
 
     void OnMobileInput(GameFunctionsController.Direction targetDirection)
@@ -237,12 +244,10 @@ public class CharacterMovement : MonoBehaviour
                 yield return null;
             }
             transform.position = targetPos;
+
             if (_keeping || _pressingButton)
             {
-                if (!_gameFunctionsController.UsingMobile)
-                {
-                    CheckInputs();
-                }
+                CheckInputs();
                 StartCoroutine(CrMoveChar(_targetDir));
             }
             else
@@ -278,7 +283,9 @@ public class CharacterMovement : MonoBehaviour
 
     void CheckInputs()
     {
-        if(_inputMovement.x != 0)
+        _inputMovement = _joystick.GetDirection();
+
+        if(Mathf.Abs(_inputMovement.x )> Mathf.Abs(_inputMovement.y))
         {
             if (_inputMovement.x > _minMovement)
             {
@@ -289,7 +296,7 @@ public class CharacterMovement : MonoBehaviour
                 _targetDir = GameFunctionsController.Direction.Left;
             }
         }
-        else if (_inputMovement.y != 0)
+        else
         {
             if (_inputMovement.y > _minMovement)
             {
@@ -300,6 +307,7 @@ public class CharacterMovement : MonoBehaviour
                 _targetDir = GameFunctionsController.Direction.Down;
             }
         }
+
         if (!_moving)
         {
             StartCoroutine(CrMoveChar(_targetDir));
